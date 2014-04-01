@@ -1,5 +1,7 @@
 package com.ohtu.miniprojektiv2.domain;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class Inproceedings {
@@ -11,9 +13,11 @@ public class Inproceedings {
     @NotBlank
     private String booktitle;
     @NotBlank
-    private String year;
+    @Min(0)
+    @Max(9999)
+    private int year;
 
-    public Inproceedings(String author, String title, String booktitle, String year) {
+    public Inproceedings(String author, String title, String booktitle, int year) {
         this.author = author;
         this.title = title;
         this.booktitle = booktitle;
@@ -44,11 +48,11 @@ public class Inproceedings {
         this.booktitle = booktitle;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 }
