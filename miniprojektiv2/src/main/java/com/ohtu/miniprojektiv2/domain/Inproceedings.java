@@ -13,11 +13,12 @@ public class Inproceedings {
     @NotBlank
     private String booktitle;
     @NotBlank
-    @Min(0)
-    @Max(9999)
-    private int year;
+    private String year;
 
-    public Inproceedings(String author, String title, String booktitle, int year) {
+    public Inproceedings() {
+    }
+
+    public Inproceedings(String author, String title, String booktitle, String year) {
         this.author = author;
         this.title = title;
         this.booktitle = booktitle;
@@ -48,11 +49,11 @@ public class Inproceedings {
         this.booktitle = booktitle;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 }
