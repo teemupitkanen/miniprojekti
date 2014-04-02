@@ -4,7 +4,7 @@ import java.util.Random;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
-public class Inproceeding {
+public class Inproceeding implements Citation {
 
     /**
      * Mandatory fields
@@ -19,7 +19,6 @@ public class Inproceeding {
     @Range(min = 0, max = 9999)
     private String year;
 
-    // editor, volume/number, series, pages, address, month, organization, publisher, note, key
     /**
      * Optional fields
      */
@@ -55,7 +54,8 @@ public class Inproceeding {
         this.note = note;
         this.key = key;
     }
-
+    
+    @Override
     public int getId() {
         return id;
     }
@@ -68,10 +68,12 @@ public class Inproceeding {
         this.author = author;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
 
+    @Override
     public void setTitle(String title) {
         this.title = title;
     }

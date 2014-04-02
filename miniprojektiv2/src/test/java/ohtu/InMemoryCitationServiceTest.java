@@ -29,6 +29,7 @@ public class InMemoryCitationServiceTest {
       assertEquals(in.getAuthor(), author);
 
    }
+   
    @Test
    public void searchingInproceedins() {
       serv.insert(in);
@@ -36,5 +37,12 @@ public class InMemoryCitationServiceTest {
 
       assertEquals(in.getAuthor(), found.getAuthor());
 
+   }
+   @Test
+   public void searchingUnexistentInproceedins() {
+      serv.insert(in);
+      Inproceeding found = serv.getById(666);
+
+      assertEquals(null, found);
    }
 }
