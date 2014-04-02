@@ -28,9 +28,10 @@ public class InproceedingTest {
     }
     
     @Test
-    public void creatingANewInproceedingIncreasesId(){
-        Inproceeding another = new Inproceeding("someotherauthor","someothertitle","someotherbooktitle","2000","","","","","","","","","","");
-        assertEquals(another.getId(),2);
+    public void inproceedingsHaveUniqueId(){
+        Inproceeding first = new Inproceeding();
+        Inproceeding another = new Inproceeding();
+        assertFalse(another.getId() == first.getId());
     }
     @Test
     public void equalsRecognizesEqualInproceedings(){
