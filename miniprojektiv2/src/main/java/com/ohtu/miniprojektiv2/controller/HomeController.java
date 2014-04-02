@@ -35,7 +35,7 @@ public class HomeController {
 
     @RequestMapping(value = "citations/{id}", method = RequestMethod.GET)
     public String index(Model model, @PathVariable Integer id) {
-        model.addAttribute("citation", citationService.getCitationById(id));
+        model.addAttribute("citation", citationService.getById(id));
         return "viewCitation";
     }
 
