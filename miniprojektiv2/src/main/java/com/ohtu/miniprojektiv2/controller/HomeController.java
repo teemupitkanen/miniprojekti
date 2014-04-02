@@ -1,9 +1,6 @@
 package com.ohtu.miniprojektiv2.controller;
 
 import com.ohtu.miniprojektiv2.domain.Inproceeding;
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
@@ -25,7 +21,12 @@ public class HomeController {
      * For now, list all citations when accessing root address
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String listAllCitations(Model model, @ModelAttribute("citation") Inproceeding citation) {
+    public String listAllCitations() {
+        return "index";
+    }
+
+    @RequestMapping(value = "listAll", method = RequestMethod.GET)
+    public String index(Model model, @ModelAttribute("citation") Inproceeding citation) {
         model.addAttribute("citations", citationService.listAll());
         return "listAll";
     }
@@ -42,10 +43,10 @@ public class HomeController {
             return "new";
         } else {
             citationService.insert(citation);
-            return "listAll";
+            return "redirect:listAll";
         }
     }
-    
+
 //    @RequestMapping(value = "success", method = RequestMethod.GET)
 //    public String showSuccessfulAdditionPage() {
 //        return "success";

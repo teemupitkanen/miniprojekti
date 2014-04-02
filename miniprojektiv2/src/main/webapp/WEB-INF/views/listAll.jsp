@@ -33,6 +33,6 @@
                 </pre>
             </table>
         </div>
-        <p><a href="/new">Create new citation</a></p>
+        <p><a href="new">Create new citation</a></p>
     </body>
 </html>
