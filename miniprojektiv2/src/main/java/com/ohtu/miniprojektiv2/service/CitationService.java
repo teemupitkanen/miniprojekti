@@ -1,5 +1,5 @@
 
-package com.ohtu.miniprojektiv2.controller;
+package com.ohtu.miniprojektiv2.service;
 
 import com.ohtu.miniprojektiv2.domain.Inproceeding;
 import java.util.List;

@@ -1,5 +1,6 @@
 package com.ohtu.miniprojektiv2.controller;
 
+import com.ohtu.miniprojektiv2.service.CitationService;
 import com.ohtu.miniprojektiv2.domain.Inproceeding;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
