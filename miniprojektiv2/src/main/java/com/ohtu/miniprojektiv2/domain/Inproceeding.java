@@ -3,7 +3,7 @@ package com.ohtu.miniprojektiv2.domain;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
-public class Inproceeding implements Citation {
+public class Inproceeding implements Citation, Citation {
 
     /**
      * Mandatory fields
@@ -51,6 +51,7 @@ public class Inproceeding implements Citation {
         this.key = key;
     }
     
+    @Override
     public int getId() {
         return id;
     }
