@@ -32,4 +32,13 @@ public class InMemoryCitationService implements CitationService{
       list.add(cite);
    }
    
+   public Inproceeding getById(Integer id){
+      for (Inproceeding inproceeding : list) {
+        if(inproceeding.getId() == id){
+           return inproceeding;
+        }
+      }
+      return null;
+   }
+   
 }
