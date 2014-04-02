@@ -1,10 +1,10 @@
 
 package com.ohtu.miniprojektiv2.controller;
 
-import org.springframework.test.web.server.MockMvc;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.springframework.test.web.server.MockMvc;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * Tests for HomeController.
