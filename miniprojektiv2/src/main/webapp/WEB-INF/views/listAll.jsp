@@ -5,16 +5,32 @@
 
 <html>
     <head>
+        <link href="<c:url value="/resources/style.css" />" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Citations</title>
     </head>
     <body>
         <h1>Listing all citations</h1>
-        <pre>
-            <c:forEach var="citation" items="${citations}">
-                ${citation}
-            </c:forEach>
-        </pre>
-        <p><a href="miniprojektiv2/new">Create new citation</a></p>
+        <div>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Book title</th>
+                    <th>Year</th>
+                </tr>
+                <pre>
+                    <c:forEach var="citation" items="${citations}">
+                <tr>
+                    <td>${citation.title}</td>
+                    <td>${citation.author}</td>
+                    <td>${citation.booktitle}</td>
+                    <td>${citation.year}</td>
+                </tr>
+                    </c:forEach>
+                </pre>
+            </table>
+        </div>
+        <p><a href="/new">Create new citation</a></p>
     </body>
 </html>

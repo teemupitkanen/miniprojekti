@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Citation added!</h1>
+        <p><a href="/listAll">Main page</a></p>
     </body>
 </html>

@@ -4,7 +4,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotBlank;
 
-public class Inproceedings {
+public class Inproceeding {
 
     @NotBlank
     private String author;
@@ -15,10 +15,10 @@ public class Inproceedings {
     @NotBlank
     private String year;
 
-    public Inproceedings() {
+    public Inproceeding() {
     }
 
-    public Inproceedings(String author, String title, String booktitle, String year) {
+    public Inproceeding(String author, String title, String booktitle, String year) {
         this.author = author;
         this.title = title;
         this.booktitle = booktitle;
@@ -55,5 +55,21 @@ public class Inproceedings {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+        
+        if (object.getClass() != getClass()) {
+            return false;
+        }
+        Inproceeding ip = (Inproceeding) object;
+        return this.author.equals(ip.getAuthor())
+                && this.booktitle.equals(ip.getBooktitle())
+                && this.title.equals(ip.getBooktitle())
+                && this.year.equals(ip.getYear());
     }
 }
