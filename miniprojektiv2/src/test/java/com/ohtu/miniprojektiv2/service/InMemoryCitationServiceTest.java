@@ -1,4 +1,4 @@
-package ohtu;
+package com.ohtu.miniprojektiv2.service;
 
 import com.ohtu.miniprojektiv2.domain.Inproceeding;
 import com.ohtu.miniprojektiv2.service.InMemoryCitationService;
