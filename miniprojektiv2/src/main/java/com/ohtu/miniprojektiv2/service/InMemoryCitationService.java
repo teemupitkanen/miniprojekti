@@ -32,6 +32,7 @@ public class InMemoryCitationService implements CitationService{
       list.add(cite);
    }
    
+   @Override
    public Inproceeding getById(Integer id){
       for (Inproceeding inproceeding : list) {
         if(inproceeding.getId() == id){
