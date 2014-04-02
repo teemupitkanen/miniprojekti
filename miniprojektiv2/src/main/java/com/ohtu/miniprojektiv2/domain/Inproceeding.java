@@ -1,8 +1,7 @@
 package com.ohtu.miniprojektiv2.domain;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 
 public class Inproceeding {
 
@@ -12,7 +11,7 @@ public class Inproceeding {
     private String title;
     @NotBlank
     private String booktitle;
-    @NotBlank
+    @Range(min=0, max=9999)
     private String year;
 
     public Inproceeding() {
