@@ -28,7 +28,6 @@
             Note: <form:input path="note" /><br/>
             Key: <form:input path="key" /><br/>
             
-            
             <input type="submit">
         </form:form>
     </body>

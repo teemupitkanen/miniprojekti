@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,6 +30,12 @@ public class HomeController {
     public String index(Model model, @ModelAttribute("citation") Inproceeding citation) {
         model.addAttribute("citations", citationService.listAll());
         return "listAll";
+    }
+
+    @RequestMapping(value = "citations/{id}", method = RequestMethod.GET)
+    public String index(Model model, @PathVariable Integer id) {
+        model.addAttribute("citation", citationService.getCitationById(id));
+        return "viewCitation";
     }
 
     @RequestMapping(value = "new", method = RequestMethod.GET)

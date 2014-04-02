@@ -8,6 +8,7 @@ public class Inproceeding {
     /**
      * Mandatory fields
      */
+    private int id;
     @NotBlank
     private String author;
     @NotBlank
@@ -32,10 +33,8 @@ public class Inproceeding {
     private String note;
     private String key;
 
-    public Inproceeding() {
-    }
-
     public Inproceeding(String author, String title, String booktitle, String year, String editor, String volumeNumber, String series, String pages, String address, String month, String organization, String publisher, String note, String key) {
+        this.id = CitationId.getId();
         this.author = author;
         this.title = title;
         this.booktitle = booktitle;
@@ -50,6 +49,10 @@ public class Inproceeding {
         this.publisher = publisher;
         this.note = note;
         this.key = key;
+    }
+    
+    public int getId() {
+        return id;
     }
 
     public String getAuthor() {
