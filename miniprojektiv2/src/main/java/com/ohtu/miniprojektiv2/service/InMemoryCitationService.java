@@ -4,7 +4,6 @@
  */
 package com.ohtu.miniprojektiv2.service;
 
-import com.ohtu.miniprojektiv2.service.CitationService;
 import com.ohtu.miniprojektiv2.domain.Inproceeding;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +31,7 @@ public class InMemoryCitationService implements CitationService{
       list.add(cite);
    }
    
+   @Override
    public Inproceeding getById(Integer id){
       for (Inproceeding inproceeding : list) {
         if(inproceeding.getId() == id){

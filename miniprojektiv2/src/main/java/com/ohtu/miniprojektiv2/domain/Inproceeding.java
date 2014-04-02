@@ -1,5 +1,6 @@
 package com.ohtu.miniprojektiv2.domain;
 
+import java.util.Random;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
@@ -33,8 +34,12 @@ public class Inproceeding {
     private String note;
     private String key;
 
+    public Inproceeding() {
+        Random r = new Random();
+        this.id = r.nextInt(Integer.MAX_VALUE);
+    }
+
     public Inproceeding(String author, String title, String booktitle, String year, String editor, String volumeNumber, String series, String pages, String address, String month, String organization, String publisher, String note, String key) {
-        this.id = CitationId.getId();
         this.author = author;
         this.title = title;
         this.booktitle = booktitle;
@@ -50,7 +55,7 @@ public class Inproceeding {
         this.note = note;
         this.key = key;
     }
-    
+
     public int getId() {
         return id;
     }

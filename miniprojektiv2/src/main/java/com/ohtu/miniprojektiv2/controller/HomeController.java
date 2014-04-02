@@ -54,9 +54,4 @@ public class HomeController {
             return "redirect:listAll";
         }
     }
-
-//    @RequestMapping(value = "success", method = RequestMethod.GET)
-//    public String showSuccessfulAdditionPage() {
-//        return "success";
-//    }
 }
