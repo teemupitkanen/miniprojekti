@@ -11,6 +11,9 @@ public class InMemoryCitationServiceTest {
    private InMemoryCitationService serv;
    private Inproceeding in;
 
+   /**
+    * Tests for InMemoryCitationService
+    */
    public InMemoryCitationServiceTest() {
       this.serv = new InMemoryCitationService();
    }

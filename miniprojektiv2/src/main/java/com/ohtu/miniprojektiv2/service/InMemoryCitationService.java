@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class InMemoryCitationService implements CitationService{
    
    /**
-    *
+    *Controls adding, listing and searching inproceedings-cites
     */
    private List<Inproceeding> list;
    
