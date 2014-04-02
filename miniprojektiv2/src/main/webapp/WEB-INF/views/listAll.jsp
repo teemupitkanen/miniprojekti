@@ -26,8 +26,11 @@
                     <td>${citation.author}</td>
                     <td>${citation.booktitle}</td>
                     <td>${citation.year}</td>
-                    <td><a href="/edit/${citation}">edit</a></td>
-                    <td><a href="/delete/${citation}">delete</a></td>
+                    <td><a href="citations/${citation.id}">view</a></td>
+<!--
+                    <td><a href="/edit/${citation.id}">edit</a></td>
+                    <td><a href="/delete/${citation.id}">delete</a></td>
+-->
                 </tr>
                     </c:forEach>
                 </pre>
