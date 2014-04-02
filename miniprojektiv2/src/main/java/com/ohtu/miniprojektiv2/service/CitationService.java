@@ -10,4 +10,5 @@ public interface CitationService {
     */
    public List<Inproceeding> listAll();
    public void insert(Inproceeding cite);
+   public Inproceeding getById(Integer id);
 }
