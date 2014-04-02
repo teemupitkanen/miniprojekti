@@ -12,11 +12,11 @@
         <title>Viewing citation</title>
     </head>
     <body>
-        <table>
-            <td>${citation.title}</td>
-            <td>${citation.author}</td>
-            <td>${citation.booktitle}</td>
-            <td>${citation.year}</td>
-        </table>
+        <h1>${citation.title}</h1>
+        <ul>
+            <li>Author: ${citation.author}</li>
+            <li>Book title: ${citation.booktitle}</li>
+            <li>Year: ${citation.year}</li>
+        </ul>
     </body>
 </html>

@@ -6,15 +6,18 @@
 
 package com.ohtu.miniprojektiv2.domain;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author 41407
  */
+@Component
 public class CitationId {
     private static int id = 0;
 
     protected static int getId() {
-        id++;
+        id ++;
         return id;
     }
 }
