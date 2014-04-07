@@ -1,14 +1,14 @@
 
 package com.ohtu.miniprojektiv2.service;
 
-import com.ohtu.miniprojektiv2.domain.Inproceeding;
+import com.ohtu.miniprojektiv2.domain.Citation;
 import java.util.List;
 
 public interface CitationService {
    /**
     *
     */
-   public List<Inproceeding> listAll();
-   public void insert(Inproceeding cite);
-   public Inproceeding getById(Integer id);
+   public List<Citation> listAll();
+   public void insert(Citation cite);
+   public Citation getById(Integer id);
 }

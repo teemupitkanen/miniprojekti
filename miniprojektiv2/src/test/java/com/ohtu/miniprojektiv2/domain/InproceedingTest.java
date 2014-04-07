@@ -11,7 +11,7 @@ public class InproceedingTest {
 
     public InproceedingTest() {
     }
-    private Inproceeding inp;
+    private Citation inp;
 
     @BeforeClass
     public static void setUpClass() {
@@ -23,13 +23,13 @@ public class InproceedingTest {
 
     @Before
     public void setUp() {
-        inp = new Inproceeding();
+        inp = new Citation();
     }
 
     @Test
     public void inproceedingsHaveUniqueId() {
-        Inproceeding first = new Inproceeding();
-        Inproceeding another = new Inproceeding();
+        Citation first = new Citation();
+        Citation another = new Citation();
         assertFalse(another.getId() == first.getId());
     }
 
