@@ -44,4 +44,11 @@ public class InproceedingTest {
         Inproceeding another = new Inproceeding("someotherauthor","someothertitle","someotherbooktitle","2000","","","","","","","","","","");
         assertEquals(another.equals(inp),false);
     }
+    @Test
+    public void bibTexPrintingWithEmptyValues(){
+       String bibtex = "@inproceedings{" + ",\n";
+      bibtex += "author = ,\n" + "title = ,\n" + "booktitle = ,\n" + "year = ,\n";
+      bibtex += "} \n";
+      assertEquals(bibtex, inp.bibTexForm());
+    }
 }

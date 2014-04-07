@@ -228,10 +228,10 @@ public class Inproceeding implements Citation {
    }
 
    public String bibTexForm() {
-      String code = "@inproceedings{" + ",\n";
-      code += "author = ,\n" + "title = ,\n" + "booktitle = ,\n" + "year = ,\n";
-      code += "} \n";
-      return code;
+      String bibtex = "@inproceedings{" + ",\n";
+      bibtex += "author = ,\n" + "title = ,\n" + "booktitle = ,\n" + "year = ,\n";
+      bibtex += "} \n";
+      return bibtex;
 
    }
 }
