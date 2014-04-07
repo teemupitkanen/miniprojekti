@@ -23,7 +23,7 @@ public class Citation {
         for (String string : applicableFields) {
             fields.put(string, "");
         }
-        this.citeId = fields.get("author").substring(0, 2) + fields.get("year").substring(2, 3);
+//        this.citeId = fields.get("author").substring(0, 2) + fields.get("year").substring(2, 3);
     }
 
     public int getId() {
@@ -73,8 +73,21 @@ public class Citation {
     }
 
     public String bibTexForm() {
-        String code = "@inproceedings{" + ",\n";
+        String code = "@inproceedings{" +citeId+ ",\n";
         code += "author = ,\n" + "title = ,\n" + "booktitle = ,\n" + "year = ,\n";
+        for (int i = 0; i < applicableFields.length; i++) {
+          String string = fields.get(applicableFields[i]);
+          String added = "";
+           for (int j = 0; j < string.length(); j++) {
+              if(string.charAt(j) == 'ä'){
+
+              }if(string.charAt(j) == 'ö'){
+                 
+              }
+              
+           }
+          
+       }
         code += "} \n";
         return code;
 
