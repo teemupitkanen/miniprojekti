@@ -1,10 +1,17 @@
 package com.ohtu.miniprojektiv2.domain;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 public class Inproceeding implements Citation {
+
+    private static final String[] applicableFields
+            = {"author", "title", "booktitle", "year", // <- mandatory fields
+                "editor", "volumeNumber", "series", "pages", "address",
+                "month", "organization", "publisher", "note", "key"};
 
     /**
      * Mandatory fields
@@ -18,6 +25,7 @@ public class Inproceeding implements Citation {
     private String booktitle;
     @Range(min = 0, max = 9999)
     private String year;
+    private Map<String, String> fields;
 
     /**
      * Optional fields
@@ -36,28 +44,39 @@ public class Inproceeding implements Citation {
     public Inproceeding() {
         Random r = new Random();
         this.id = r.nextInt(Integer.MAX_VALUE);
+        fields = new HashMap();
+
     }
-/*
-    public Inproceeding(String author, String title, String booktitle, String year, String editor, String volumeNumber, String series, String pages, String address, String month, String organization, String publisher, String note, String key) {
-        this.author = author;
-        this.title = title;
-        this.booktitle = booktitle;
-        this.year = year;
-        this.editor = editor;
-        this.volumeNumber = volumeNumber;
-        this.series = series;
-        this.pages = pages;
-        this.address = address;
-        this.month = month;
-        this.organization = organization;
-        this.publisher = publisher;
-        this.note = note;
-        this.key = key;
-    }
-  */  
+
     @Override
     public int getId() {
         return id;
+    }
+
+    /**
+     *
+     * @param field Field name whose value is wanted
+     * @return Value for given field, or empty string if field not found
+     */
+    public String getField(String field) {
+        if (fields.containsKey(field)) {
+            return fields.get(field);
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     *
+     * @param field Name of field
+     * @param value Value to be inserted to field
+     */
+    public void setField(String field, String value) {
+        for (String string : applicableFields) {
+            if (string.equals(field)) {
+                fields.put(field, value);
+            }
+        }
     }
 
     public String getAuthor() {
