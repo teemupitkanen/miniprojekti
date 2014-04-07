@@ -8,7 +8,7 @@
         <title>Listing in BibTeX-form</title>
     </head>
     <body>
-        <h1>Listing all citations in BibTex form</h1>
+        <h1>All citations in BibTex form:</h1>
         <div>
             <c:forEach var="citation" items="${citations}">
                 <p>${citation.bibTexForm}<br></p>

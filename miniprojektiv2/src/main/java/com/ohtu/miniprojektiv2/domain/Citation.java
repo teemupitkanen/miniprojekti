@@ -69,12 +69,11 @@ public class Citation {
       this.fields = fields;
    }
 
-   public String bibTexForm() {
-      String code = "@"+ citeType+"{" + citeId + ",\n";
+   public String getBibTexForm() {
+      String code = "@"+ citeType+"{" + citeId + ",<br>";
       
       for (int i = 0; i < applicableFields.length; i++) {
          String string = fields.get(applicableFields[i]);
-
          if (!string.equals("")) {
             code += applicableFields[i] + " = {";
             String added = "";
@@ -88,12 +87,13 @@ public class Citation {
                }
                code += added;
             }
-            code += " },\n";
+            code += " },<br>";
          }
 
       }
-      code += "} \n";
+      code += "} <br>";
       return code;
 
    }
+
 }
