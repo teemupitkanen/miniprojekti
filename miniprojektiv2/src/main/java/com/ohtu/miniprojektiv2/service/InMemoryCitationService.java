@@ -4,7 +4,7 @@
  */
 package com.ohtu.miniprojektiv2.service;
 
-import com.ohtu.miniprojektiv2.domain.Inproceeding;
+import com.ohtu.miniprojektiv2.domain.Citation;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -15,25 +15,25 @@ public class InMemoryCitationService implements CitationService{
    /**
     *Controls adding, listing and searching inproceedings-cites
     */
-   private List<Inproceeding> list;
+   private List<Citation> list;
    
    public InMemoryCitationService(){
-      list = new ArrayList<Inproceeding>();
+      list = new ArrayList<Citation>();
    }
 
    @Override
-   public List<Inproceeding> listAll() {
+   public List<Citation> listAll() {
       return list;
    }
 
    @Override
-   public void insert(Inproceeding cite) {
+   public void insert(Citation cite) {
       list.add(cite);
    }
    
    @Override
-   public Inproceeding getById(Integer id){
-      for (Inproceeding inproceeding : list) {
+   public Citation getById(Integer id){
+      for (Citation inproceeding : list) {
         if(inproceeding.getId() == id){
            return inproceeding;
         }

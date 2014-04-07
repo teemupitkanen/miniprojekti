@@ -1,7 +1,7 @@
 package com.ohtu.miniprojektiv2.controller;
 
 import com.ohtu.miniprojektiv2.service.CitationService;
-import com.ohtu.miniprojektiv2.domain.Inproceeding;
+import com.ohtu.miniprojektiv2.domain.Citation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,7 +28,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "listAll", method = RequestMethod.GET)
-    public String index(Model model, @ModelAttribute("citation") Inproceeding citation) {
+    public String index(Model model, @ModelAttribute("citation") Citation citation) {
         model.addAttribute("citations", citationService.listAll());
         return "listAll";
     }
@@ -40,12 +40,12 @@ public class HomeController {
     }
 
     @RequestMapping(value = "new", method = RequestMethod.GET)
-    public String newCitationForm(@ModelAttribute("citation") Inproceeding citation) {
+    public String newCitationForm(@ModelAttribute("citation") Citation citation) {
         return "new";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String createNewCitation(@Valid @ModelAttribute("citation") Inproceeding citation,
+    public String createNewCitation(@Valid @ModelAttribute("citation") Citation citation,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "new";
