@@ -54,4 +54,11 @@ public class HomeController {
             return "redirect:listAll";
         }
     }
+    
+    @RequestMapping(value="bibtex", method = RequestMethod.POST)
+    public String showCitesInBibtexForm(Model model, @ModelAttribute("citation") Citation citation){
+        model.addAttribute("citations", citationService.listAll());
+        return "listBibtex";
+    }
+
 }

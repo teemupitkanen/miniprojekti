@@ -5,14 +5,15 @@
     <head>
         <link href="<c:url value="/resources/style.css" />" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Listing in BibTeX-form</title>
     </head>
     <body>
         <h1>Listing all citations in BibTex form</h1>
+        <div>
             <c:forEach var="citation" items="${citations}">
                 <p>${citation.bibTexForm}<br><br></p>
             </c:forEach>
-        
+        </div>
         <p><a href="/">Home</a></p>
     </body>
 </html>
