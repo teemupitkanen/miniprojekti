@@ -22,10 +22,11 @@
                 <pre>
                     <c:forEach var="citation" items="${citations}">
                 <tr>
-                    <td>${citation.title}</td>
-                    <td>${citation.author}</td>
-                    <td>${citation.booktitle}</td>
-                    <td>${citation.year}</td>
+
+                    <td>${citation.fields.title}</td>
+                    <td>${citation.fields.author}</td>
+                    <td>${citation.fields.booktitle}</td>
+                    <td>${citation.fields.year}</td>
                     <td><a href="citations/${citation.id}">view</a></td>
 <!--
                     <td><a href="/edit/${citation.id}">edit</a></td>

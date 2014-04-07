@@ -12,11 +12,58 @@
         <title>Viewing citation</title>
     </head>
     <body>
-        <h1>${citation.title}</h1>
-        <ul>
-            <li>Author: ${citation.author}</li>
-            <li>Book title: ${citation.booktitle}</li>
-            <li>Year: ${citation.year}</li>
-        </ul>
+        <h2>Citation</h2>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            
+            <tr>
+                <td>
+                    Title:
+                </td>
+                <td>
+                    ${citation.fields.title}
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    Author:
+                </td>
+                <td>
+                    ${citation.fields.author}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Year:
+                </td>
+                <td>
+                    ${citation.fields.year}
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    Book title:
+                </td>
+                <td>
+                    ${citation.fields.booktitle}
+                </td>
+            </tr>
+            
+            <!--
+            <c:forEach items="${citation.fields}" var="field">
+                <tr>
+                    <td>${fields.key}</td>
+                    <td>${fields.value}</td>
+                </tr>
+            </c:forEach>
+            -->
+        </table>
+        <br />
+        <input type="button" value="Back" onclick="javascript:history.back()" />
     </body>
 </html>
