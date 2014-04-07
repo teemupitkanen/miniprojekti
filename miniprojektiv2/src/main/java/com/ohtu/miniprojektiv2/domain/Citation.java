@@ -6,90 +6,94 @@ import java.util.Random;
 
 public class Citation {
 
-    private final String[] applicableFields
-            = {"author", "title", "booktitle", "year", // <- mandatory fields
-                "editor", "volumeNumber", "series", "pages", "address",
-                "month", "organization", "publisher", "note", "key"};
+   private final String[] applicableFields = {"author", "title", "booktitle", "year", // <- mandatory fields
+      "editor", "volumeNumber", "series", "pages", "address",
+      "month", "organization", "publisher", "note", "key"};
+   private int id;
+   private Map<String, String> fields;
+   private String citeId;
+   private String citeType;
 
-    private int id;
-    private Map<String, String> fields;
-    private String citeId;
+   public Citation() {
+      Random r = new Random();
+      this.id = r.nextInt(Integer.MAX_VALUE);
+      fields = new HashMap();
+      for (String string : applicableFields) {
+         fields.put(string, "");
+      }
+   }
 
-
-    public Citation() {
-        Random r = new Random();
-        this.id = r.nextInt(Integer.MAX_VALUE);
-        fields = new HashMap();
-        for (String string : applicableFields) {
-            fields.put(string, "");
-        }
-//        this.citeId = fields.get("author").substring(0, 2) + fields.get("year").substring(2, 3);
-    }
-
-    public int getId() {
-        return id;
-    }
+   public int getId() {
+      return id;
+   }
 
    public void setCiteId(String citeId) {
       this.citeId = citeId;
    }
-    
+
    public String getCiteId() {
       return citeId;
    }
 
-    /**
-     *
-     * @param field Field name whose value is wanted
-     * @return Value for given field, or empty string if field not found
-     */
-    public String getField(String field) {
-        if (fields.containsKey(field)) {
-            return fields.get(field);
-        } else {
-            return "";
-        }
-    }
+   /**
+    *
+    * @param field Field name whose value is wanted
+    * @return Value for given field, or empty string if field not found
+    */
+   public String getField(String field) {
+      if (fields.containsKey(field)) {
+         return fields.get(field);
+      } else {
+         return "";
+      }
+   }
 
-    /**
-     *
-     * @param field Name of field
-     * @param value Value to be inserted to field
-     */
-    public void setField(String field, String value) {
-        for (String string : applicableFields) {
-            if (string.equals(field)) {
-                fields.put(field, value);
+   /**
+    *
+    * @param field Name of field
+    * @param value Value to be inserted to field
+    */
+   public void setField(String field, String value) {
+      for (String string : applicableFields) {
+         if (string.equals(field)) {
+            fields.put(field, value);
+         }
+      }
+   }
+
+   public Map<String, String> getFields() {
+      return fields;
+   }
+
+   public void setFields(Map<String, String> fields) {
+      this.fields = fields;
+   }
+
+   public String bibTexForm() {
+      String code = "@"+ citeType+"{" + citeId + ",\n";
+      
+      for (int i = 0; i < applicableFields.length; i++) {
+         String string = fields.get(applicableFields[i]);
+
+         if (!string.equals("")) {
+            code += applicableFields[i] + " = {";
+            String added = "";
+            for (int j = 0; j < string.length(); j++) {
+               if (string.charAt(j) == 'ä') {
+                  added += "\"{a}";
+               } else if (string.charAt(j) == 'ö') {
+                  added += "\"{o}";
+               } else {
+                  added += string.charAt(j);
+               }
+               code += added;
             }
-        }
-    }
+            code += " },\n";
+         }
 
-    public Map<String, String> getFields() {
-        return fields;
-    }
+      }
+      code += "} \n";
+      return code;
 
-    public void setFields(Map<String, String> fields) {
-        this.fields = fields;
-    }
-
-    public String bibTexForm() {
-        String code = "@inproceedings{" +citeId+ ",\n";
-        code += "author = ,\n" + "title = ,\n" + "booktitle = ,\n" + "year = ,\n";
-        for (int i = 0; i < applicableFields.length; i++) {
-          String string = fields.get(applicableFields[i]);
-          String added = "";
-           for (int j = 0; j < string.length(); j++) {
-              if(string.charAt(j) == 'ä'){
-
-              }if(string.charAt(j) == 'ö'){
-                 
-              }
-              
-           }
-          
-       }
-        code += "} \n";
-        return code;
-
-    }
+   }
 }
