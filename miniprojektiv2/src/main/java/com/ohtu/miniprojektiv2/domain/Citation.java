@@ -13,6 +13,8 @@ public class Citation {
 
     private int id;
     private Map<String, String> fields;
+    private String citeId;
+
 
     public Citation() {
         Random r = new Random();
@@ -21,11 +23,20 @@ public class Citation {
         for (String string : applicableFields) {
             fields.put(string, "");
         }
+        this.citeId = fields.get("author").substring(0, 2) + fields.get("year").substring(2, 3);
     }
 
     public int getId() {
         return id;
     }
+
+   public void setCiteId(String citeId) {
+      this.citeId = citeId;
+   }
+    
+   public String getCiteId() {
+      return citeId;
+   }
 
     /**
      *
