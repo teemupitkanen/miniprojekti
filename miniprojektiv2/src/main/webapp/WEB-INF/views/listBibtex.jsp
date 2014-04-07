@@ -9,6 +9,10 @@
     </head>
     <body>
         <h1>Listing all citations in BibTex form</h1>
+            <c:forEach var="citation" items="${citations}">
+                <p>${citation.bibTexForm}<br><br></p>
+            </c:forEach>
         
+        <p><a href="/">Home</a></p>
     </body>
 </html>
