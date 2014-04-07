@@ -11,14 +11,17 @@ public class Inproceeding implements Citation {
                 "editor", "volumeNumber", "series", "pages", "address",
                 "month", "organization", "publisher", "note", "key"};
 
-    private final int id;
-    private final Map<String, String> fields;
+    private int id;
+    private Map<String, String> fields;
 
 
     public Inproceeding() {
         Random r = new Random();
         this.id = r.nextInt(Integer.MAX_VALUE);
         fields = new HashMap();
+        for (String string : applicableFields) {
+            fields.put(string, "");
+        }
     }
 
     @Override
@@ -50,6 +53,14 @@ public class Inproceeding implements Citation {
                 fields.put(field, value);
             }
         }
+    }
+
+    public Map<String, String> getFields() {
+        return fields;
+    }
+
+    public void setFields(Map<String, String> fields) {
+        this.fields = fields;
     }
 
     @Override
