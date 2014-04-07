@@ -58,7 +58,7 @@ public class HomeController {
     @RequestMapping(value="bibtex", method = RequestMethod.POST)
     public String showCitesInBibtexForm(Model model, @ModelAttribute("citation") Citation citation){
         model.addAttribute("citations", citationService.listAll());
-        return "listBibtex";
+        return "listBibTeX";
     }
 
 }
