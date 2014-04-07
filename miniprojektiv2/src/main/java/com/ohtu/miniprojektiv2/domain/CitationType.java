@@ -11,5 +11,13 @@ package com.ohtu.miniprojektiv2.domain;
  * @author 41407
  */
 public enum CitationType {
-    INPROCEEDINGS, BOOK; //JNE
+    INPROCEEDINGS(new String[] {"author", "title", "booktitle", "year", // <- mandatory fields
+                "editor", "volumeNumber", "series", "pages", "address",
+                "month", "organization", "publisher", "note", "key"}),
+    BOOK(new String[] {"jotain"}); //JNE
+
+    private final String[] applicableFields;
+    private CitationType(String[] applicableFields){
+        this. applicableFields = applicableFields;
+    }
 }
