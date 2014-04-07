@@ -37,7 +37,7 @@ public class Inproceeding implements Citation {
         Random r = new Random();
         this.id = r.nextInt(Integer.MAX_VALUE);
     }
-
+/*
     public Inproceeding(String author, String title, String booktitle, String year, String editor, String volumeNumber, String series, String pages, String address, String month, String organization, String publisher, String note, String key) {
         this.author = author;
         this.title = title;
@@ -54,7 +54,7 @@ public class Inproceeding implements Citation {
         this.note = note;
         this.key = key;
     }
-    
+  */  
     @Override
     public int getId() {
         return id;
