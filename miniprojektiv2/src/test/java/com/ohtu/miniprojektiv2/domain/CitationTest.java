@@ -76,11 +76,7 @@ public class CitationTest {
    public void printingBibTexWorks() {
 
       print.setField("author", "Mäkkylä");
-      System.out.println(print.getCiteId());
-      System.out.println(print.getField(CitationType.INPROCEEDINGS.getApplicableFields()[0]));
-
       print.setField("title", "Coding for Dummies");
-      System.out.println(print.getField("title"));
       String correct = "@inproceedings{MAA95,<br>";
       correct += "author = {M\"{a}kkyl\"{a} },<br>";
       correct += "title = {Coding for Dummies} },<br>";

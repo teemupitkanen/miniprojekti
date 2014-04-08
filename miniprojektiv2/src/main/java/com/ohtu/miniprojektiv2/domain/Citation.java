@@ -84,7 +84,7 @@ public class Citation {
 
       for (int i = 0; i < applicableFields.length; i++) {
          String string = getField(applicableFields[i]);
-         System.out.println(string);
+
          if (!string.equals("")) {
             code += applicableFields[i] + " = {";
             String added = "";
