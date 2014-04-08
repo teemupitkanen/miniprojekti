@@ -79,9 +79,9 @@ public class Citation {
             String added = "";
             for (int j = 0; j < string.length(); j++) {
                if (string.charAt(j) == 'ä') {
-                  added += "\"{a}";
+                  added += "\\\"{a}";
                } else if (string.charAt(j) == 'ö') {
-                  added += "\"{o}";
+                  added += "\\\"{o}";
                } else {
                   added += string.charAt(j);
                }
