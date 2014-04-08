@@ -73,32 +73,10 @@ public class Citation {
    
    public String getBibTexForm() {
       String code = "@"+ citeType+"{" + citeId + ",<br>";
-<<<<<<< HEAD
-      
-      for (int i = 0; i < applicableFields.length; i++) {
-         String string = fields.get(applicableFields[i]);
-         if (!string.equals("")) {
-            code += applicableFields[i] + " = {";
-            String added = "";
-            for (int j = 0; j < string.length(); j++) {
-               if (string.charAt(j) == 'ä') {
-                  added += "\\\"{a}";
-               } else if (string.charAt(j) == 'ö') {
-                  added += "\\\"{o}";
-               } else {
-                  added += string.charAt(j);
-               }
-               code += added;
-            }
-            code += " },<br>";
-         }
-
-=======
       for(int i=0; i<applicableFields.length; i++){
           if(!fields.get(applicableFields[i]).equals("")) {
             code += applicableFields[i] + " = {" + replaceNordics(fields.get(applicableFields[i]))+"},<br>";
           }
->>>>>>> getBibTexForm -metodia siistitty ja paranneltu
       }
       code += "} <br>";
       return code;   
