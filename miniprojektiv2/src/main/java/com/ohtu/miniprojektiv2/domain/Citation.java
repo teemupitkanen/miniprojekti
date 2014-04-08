@@ -70,9 +70,10 @@ public class Citation {
    public void setFields(Map<String, String> fields) {
       this.fields = fields;
    }
-
+   
    public String getBibTexForm() {
       String code = "@"+ citeType+"{" + citeId + ",<br>";
+<<<<<<< HEAD
       
       for (int i = 0; i < applicableFields.length; i++) {
          String string = fields.get(applicableFields[i]);
@@ -92,10 +93,24 @@ public class Citation {
             code += " },<br>";
          }
 
+=======
+      for(int i=0; i<applicableFields.length; i++){
+          if(!fields.get(applicableFields[i]).equals("")) {
+            code += applicableFields[i] + " = {" + replaceNordics(fields.get(applicableFields[i]))+"},<br>";
+          }
+>>>>>>> getBibTexForm -metodia siistitty ja paranneltu
       }
       code += "} <br>";
-      return code;
-
+      return code;   
    }
 
+    private String replaceNordics(String string) {
+        string = string.replaceAll("å","{\\\\aa}");
+        string = string.replaceAll("ä","{\\\\\"a}");
+        string = string.replaceAll("ö","{\\\\\"o}");
+        string = string.replaceAll("Å","{\\\\AA}");
+        string = string.replaceAll("Ä","{\\\\\"A}");
+        string = string.replaceAll("Ö","{\\\\\"O}");
+        return string;
+    }
 }
