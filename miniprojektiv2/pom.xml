@@ -89,7 +89,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
+            <version>4.11</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -210,6 +210,17 @@
                     <storyReport>${basedir}/target/easyb/easyb-report.html
                     </storyReport>
                 </configuration>
+            </plugin>
+                        <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <configuration>
+                    <!-- verify that the system property for jetty port is set properly -->
+                    <systemPropertyVariables>
+                        <jetty.port>8090</jetty.port>
+                    </systemPropertyVariables>
+                </configuration>              
             </plugin>
         </plugins>
     </build>
