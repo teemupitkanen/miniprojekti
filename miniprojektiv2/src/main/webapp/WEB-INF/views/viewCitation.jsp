@@ -18,7 +18,16 @@
                 <th>Field</th>
                 <th>Value</th>
             </tr>
-            
+
+            <tr>
+                <td>
+                    Citation id:
+                </td>
+                <td>
+                    ${citation.citeId}
+                </td>
+            </tr>
+
             <tr>
                 <td>
                     Title:
@@ -27,7 +36,7 @@
                     ${citation.fields.title}
                 </td>
             </tr>
-            
+
             <tr>
                 <td>
                     Author:
@@ -44,7 +53,7 @@
                     ${citation.fields.year}
                 </td>
             </tr>
-            
+
             <tr>
                 <td>
                     Book title:
@@ -53,7 +62,7 @@
                     ${citation.fields.booktitle}
                 </td>
             </tr>
-            
+
             <!--
             <c:forEach items="${citation.fields}" var="field">
                 <tr>

@@ -17,6 +17,10 @@
                     <th>Key</th>
                     <th>Value</th>
                 </tr>
+                <tr><td>Citation id:</td>
+                    <td><input name="citeId"></td>
+                </tr><td> <br></td>
+                <tr/>
                 <c:forEach items="${citation.fields}" var="fields" varStatus="status">
                     <tr>
                         <td>${fields.key}</td>
