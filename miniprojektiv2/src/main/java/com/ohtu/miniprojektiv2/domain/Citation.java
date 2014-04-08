@@ -6,19 +6,15 @@ import java.util.Random;
 
 public class Citation {
 
-//   private final String[] applicableFields = {"author", "title", "booktitle", "year", // <- mandatory fields
-//      "editor", "volumeNumber", "series", "pages", "address",
-//      "month", "organization", "publisher", "note", "key"};
    private int id;
    private Map<String, String> fields;
    private String citeId;
    private String citeType;
-   private String[] applicableFields;
+   private String[] applicableFields = new String[10];
 
-   public Citation(String citeType, CitationType type) {
+   public Citation() {
       Random r = new Random();
       this.id = r.nextInt(Integer.MAX_VALUE);
-      this.applicableFields = type.getApplicableFields();
       fields = new HashMap();
       for (String string : applicableFields) {
          fields.put(string, "");
@@ -35,6 +31,18 @@ public class Citation {
 
    public String getCiteId() {
       return citeId;
+   }
+
+   public void setCiteType(String citeType) {
+      this.citeType = citeType;
+   }
+
+   public void setApplicableFields(CitationType type) {
+      fields = new HashMap();
+      this.applicableFields = type.getApplicableFields();
+      for (String string : applicableFields) {
+         fields.put(string, "");
+      }
    }
 
    /**
@@ -72,8 +80,8 @@ public class Citation {
    }
 
    public String getBibTexForm() {
-      String code = "@"+ citeType+"{" + citeId + ",<br>";
-      
+      String code = "@" + citeType + "{" + citeId + ",<br>";
+
       for (int i = 0; i < applicableFields.length; i++) {
          String string = fields.get(applicableFields[i]);
          if (!string.equals("")) {
@@ -97,5 +105,4 @@ public class Citation {
       return code;
 
    }
-
 }

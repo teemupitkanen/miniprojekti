@@ -7,9 +7,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class InproceedingTest {
+public class CitationTest {
 
-    public InproceedingTest() {
+    public CitationTest() {
     }
     private Citation inp;
 
@@ -24,13 +24,15 @@ public class InproceedingTest {
     @Before
     public void setUp() {
       
-        inp = new Citation("inproceedings",CitationType.INPROCEEDINGS);
+        inp = new Citation();
+        inp.setCiteType("inproceedings");
+        inp.setApplicableFields(CitationType.INPROCEEDINGS);
     }
 
     @Test
     public void inproceedingsHaveUniqueId() {
-        Citation first = new Citation("inproceedings",CitationType.INPROCEEDINGS );
-        Citation another = new Citation("inproceedings",CitationType.INPROCEEDINGS);
+        Citation first = new Citation();
+        Citation another = new Citation();
         assertFalse(another.getId() == first.getId());
     }
 
@@ -54,5 +56,24 @@ public class InproceedingTest {
     public void setNonexistentFieldDoesntAddSaidField() {
         inp.setField("mike", "newfield");
         assertEquals("", inp.getField("mike"));
+    }
+    @Test
+    public void creatingAnotherCitationTypeWorks(){
+       Citation book = new Citation();
+       book.setCiteId("KIRJA123");
+       book.setApplicableFields(CitationType.BOOK);
+       
+       assertEquals("KIRJA123", book.getCiteId());
+    }
+    @Test
+    public void printingBibTexWorks() {
+       inp.setCiteId("MAA95");  
+       inp.setField("author", "Mäkkylä");
+       inp.setField("title", "Coding for Dummies");
+       String correct = "@inproceedings{MAA95,<br>";
+       correct += "author = {M\"{a}kkyl\"{a} },<br>";
+       correct += "title = {Coding for Dummies} },<br>";
+       correct += "} <br>";
+    assertEquals(correct, inp.getBibTexForm());
     }
 }
