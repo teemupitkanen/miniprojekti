@@ -6,17 +6,19 @@ import java.util.Random;
 
 public class Citation {
 
-   private final String[] applicableFields = {"author", "title", "booktitle", "year", // <- mandatory fields
-      "editor", "volumeNumber", "series", "pages", "address",
-      "month", "organization", "publisher", "note", "key"};
+//   private final String[] applicableFields = {"author", "title", "booktitle", "year", // <- mandatory fields
+//      "editor", "volumeNumber", "series", "pages", "address",
+//      "month", "organization", "publisher", "note", "key"};
    private int id;
    private Map<String, String> fields;
    private String citeId;
    private String citeType;
+   private String[] applicableFields;
 
-   public Citation() {
+   public Citation(String citeType, CitationType type) {
       Random r = new Random();
       this.id = r.nextInt(Integer.MAX_VALUE);
+      this.applicableFields = type.getApplicableFields();
       fields = new HashMap();
       for (String string : applicableFields) {
          fields.put(string, "");

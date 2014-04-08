@@ -23,13 +23,14 @@ public class InproceedingTest {
 
     @Before
     public void setUp() {
-        inp = new Citation();
+      
+        inp = new Citation("inproceedings",CitationType.INPROCEEDINGS);
     }
 
     @Test
     public void inproceedingsHaveUniqueId() {
-        Citation first = new Citation();
-        Citation another = new Citation();
+        Citation first = new Citation("inproceedings",CitationType.INPROCEEDINGS );
+        Citation another = new Citation("inproceedings",CitationType.INPROCEEDINGS);
         assertFalse(another.getId() == first.getId());
     }
 
