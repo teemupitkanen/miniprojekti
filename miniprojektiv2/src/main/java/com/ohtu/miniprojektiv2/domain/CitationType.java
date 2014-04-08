@@ -17,7 +17,14 @@ public enum CitationType {
     BOOK(new String[] {"jotain"}); //JNE
 
     private final String[] applicableFields;
+//    private final String citeType;
     private CitationType(String[] applicableFields){
+//       this.citeType = citeType;
         this. applicableFields = applicableFields;
     }
+
+   public String[] getApplicableFields() {
+      return applicableFields;
+   }
+    
 }
