@@ -2,7 +2,6 @@ package com.ohtu.miniprojektiv2.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class Citation {
 
@@ -13,8 +12,7 @@ public class Citation {
     private String[] applicableFields = new String[10];
 
     public Citation() {
-        Random r = new Random();
-        this.id = r.nextInt(Integer.MAX_VALUE);
+        this.id = IntegerFactory.next();
         fields = new HashMap();
     }
 
@@ -39,7 +37,13 @@ public class Citation {
         return citeType;
     }
 
-    public void setApplicableFields(CitationType type) {
+    /**
+     * Sets which fields can be set for this citation, as specified by its
+     * citation type.
+     * 
+     * @param type 
+     */
+    private void setApplicableFields(CitationType type) {
         fields = new HashMap();
         this.applicableFields = type.getApplicableFields();
         for (String string : applicableFields) {
