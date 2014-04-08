@@ -70,19 +70,25 @@
                 <c:forEach items="${addedtags}" var="tag">
                     <table>
                         <tr>
-                            <td>${tag.name}</td>
+                            <td><a href="viewTag/${tag.id}">${tag.name}</a></td>
                         </tr>
                     </table>
                 </c:forEach>  
             <h3>Add new tag<h3>
-                <form:form commandName="tagcitation" action="${pageContext.request.contextPath}/tagcitation" method="POST">
+                <form:form commandName="tagwithnew" action="${pageContext.request.contextPath}/tagwithnew" method="POST">
+                    <input name="tagName" value="">
+                    <input type="hidden" name="citationId" value="${citation.id}">
+                    <input type="submit" value="Create tag">
+                </form:form>
+            <h3>Add existing tag<h3>
+                <form:form commandName="tagwithexisting" action="${pageContext.request.contextPath}/tagwithexisting" method="POST">
                     <select name="tagId">
-                    <c:forEach var="tag" items="${tags}">
+                    <c:forEach var="tag" items="${missingtags}">
                         <option value="${tag.id}">${tag.name}</option>
                     </c:forEach>
                     </select>
                     <input type="hidden" name="citationId" value="${citation.id}">
-                    <input type="submit" value="Tag">
+                    <input type="submit" value="Add tag">
                 </form:form>
         <br />
         <input type="button" value="Back" onclick="javascript:history.back()" />

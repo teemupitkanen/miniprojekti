@@ -2,7 +2,7 @@ package com.ohtu.miniprojektiv2.controller;
 
 import com.ohtu.miniprojektiv2.domain.Citation;
 import com.ohtu.miniprojektiv2.service.CitationService;
-import com.ohtu.miniprojektiv2.service.TagService;
+import com.ohtu.miniprojektiv2.service.TagCitationService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,7 @@ public class HomeController {
     private CitationService citationService;
     
     @Autowired
-    private TagService tagService;
+    private TagCitationService tagCitationService;
 
     /**
      * For now, list all citations when accessing root address
@@ -62,8 +62,8 @@ public class HomeController {
     @RequestMapping(value = "citations/{id}", method = RequestMethod.GET)
     public String viewCitation(Model model, @PathVariable Integer id) {
         model.addAttribute("citation", citationService.getById(id));
-        model.addAttribute("addedtags", tagService.listTagsByCitationId(id));
-        model.addAttribute("tags", tagService.getAllTags());
+        model.addAttribute("addedtags", tagCitationService.listTagsByCitationId(id));
+        model.addAttribute("missingtags", tagCitationService.getTagsNotLinkedToCitation(id));
         return "viewCitation";
     }
 
@@ -108,16 +108,16 @@ public class HomeController {
     
     
     
-    /**
-     * Directs user to tag manipulation page
-     * @param model
-     * @return 
-     */
-    @RequestMapping(value = "tag", method = RequestMethod.GET)
-    public String showTagPage(Model model) {
-        model.addAttribute("tags", tagService.getAllTags());
-        return "tag";
-    }
+//    /**
+//     * Directs user to tag manipulation page
+//     * @param model
+//     * @return 
+//     */
+//    @RequestMapping(value = "tag", method = RequestMethod.GET)
+//    public String showTagPage(Model model) {
+//        model.addAttribute("tags", tagCitationService.getAllTags());
+//        return "tag";
+//    }
     
     /**
      * Directs back to tag page after removing deleted tag from the tag list
@@ -127,8 +127,20 @@ public class HomeController {
      */
     @RequestMapping(value = "deletetag/{tag}", method = RequestMethod.GET)
     public String deleteTag(Model model, @PathVariable Integer tag) {
-        tagService.removeTag(tag);
-        return "redirect:/tag";
+        tagCitationService.removeTag(tag);
+        return "redirect:listAll";
+    }
+    
+    /**
+     * Directs to a page for managing tag
+     * @param model 
+     * @param tagId
+     * @return
+     */
+    @RequestMapping(value = "viewTag/{tag}", method = RequestMethod.GET)
+    public String viewTag(Model model, @PathVariable Integer tagId) {
+        model.addAttribute("tag", tagCitationService.getCitationsByTagId(tagId));
+        return "viewTag";
     }
     
 //    /**
@@ -138,16 +150,35 @@ public class HomeController {
 //     * @param tag
 //     * @return 
 //     */
-    @RequestMapping(value = "createtag", method = RequestMethod.POST)
-    public String createTag(Model model, @ModelAttribute("tagname") String tag) {
-        tagService.createTag(tag);
-        return "redirect:tag";
-    }
+//    @RequestMapping(value = "createtag", method = RequestMethod.POST)
+//    public String createTag(Model model, @ModelAttribute("tagname") String tag) {
+//        tagCitationService.createTag(tag);
+//        return "redirect:tag";
+//    }
     
-    @RequestMapping(value = "tagcitation", method = RequestMethod.POST)
+    /**
+     * Directs to citation list after adding existing tag
+     * @param citationId 
+     * @param tagId Id of tag to be added
+     * @return
+     */
+    @RequestMapping(value = "tagwithexisting", method = RequestMethod.POST)
     public String tagcitation(Model model, @RequestParam("citationId") Integer citationId,
             @RequestParam("tagId") Integer tagId) {
-        tagService.addTagToCitation(citationId, tagId);
+        tagCitationService.addTagToCitation(citationId, tagId);
+        return "redirect:listAll";
+    }
+    
+    /**
+     * Directs to citation list after adding new tag
+     * @param citationId 
+     * @param tagName Name of the new tag
+     * @return
+     */
+    @RequestMapping(value = "tagwithnew", method = RequestMethod.POST)
+    public String tagcitation(Model model, @RequestParam("citationId") Integer citationId,
+            @RequestParam("tagName") String tagName) {
+        tagCitationService.addTagToCitation(citationId, tagName);
         return "redirect:listAll";
     }
 }
