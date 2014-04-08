@@ -10,7 +10,8 @@
     </head>
     <body>
         <h1>Create new citation</h1>
-        <form:form commandName="citation" action="${pageContext.request.contextPath}/create" modelAttribute="inproceeding" method="POST">
+        <p>Citation type: ${citationType}</p>
+        <form:form commandName="citation" action="${pageContext.request.contextPath}/create" modelAttribute="citation" method="POST">
             <table>
                 <tr>
                     <th>Key</th>

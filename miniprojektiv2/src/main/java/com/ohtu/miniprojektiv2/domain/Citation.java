@@ -9,16 +9,13 @@ public class Citation {
     private int id;
     private Map<String, String> fields;
     private String citeId;
-    private String citeType;
+    private CitationType citeType;
     private String[] applicableFields = new String[10];
 
     public Citation() {
         Random r = new Random();
         this.id = r.nextInt(Integer.MAX_VALUE);
         fields = new HashMap();
-        for (String string : applicableFields) {
-            fields.put(string, "");
-        }
     }
 
     public int getId() {
@@ -33,8 +30,13 @@ public class Citation {
         return citeId;
     }
 
-    public void setCiteType(String citeType) {
+    public void setCiteType(CitationType citeType) {
         this.citeType = citeType;
+        this.setApplicableFields(citeType);
+    }
+
+    public CitationType getCiteType() {
+        return citeType;
     }
 
     public void setApplicableFields(CitationType type) {

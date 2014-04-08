@@ -6,21 +6,27 @@ package com.ohtu.miniprojektiv2.domain;
  */
 public enum CitationType {
 
-   INPROCEEDINGS(new String[]{"author", "title", "booktitle", "year", // <- mandatory fields
-      "editor", "volumeNumber", "series", "pages", "address",
-      "month", "organization", "publisher", "note", "key"}),
-   BOOK(new String[]{"author", "title", "publisher", "year", // <- mandatory fields
-      "volume", "series", "address", "edition", "month", "note", "key"}),
-   ARTICLE(new String[]{"author", "title", "journal", "year", // <- mandatory fields
-      "volume", "number", "pages", "month", "note", "key"});
-      
-   private final String[] applicableFields;
+    INPROCEEDINGS("inproceedings", new String[]{"author", "title", "booktitle", "year", // <- mandatory fields
+        "editor", "volumeNumber", "series", "pages", "address",
+        "month", "organization", "publisher", "note", "key"}),
+    BOOK("book", new String[]{"author", "title", "publisher", "year", // <- mandatory fields
+        "volume", "series", "address", "edition", "month", "note", "key"}),
+    ARTICLE("article", new String[]{"author", "title", "journal", "year", // <- mandatory fields
+        "volume", "number", "pages", "month", "note", "key"});
 
-   private CitationType(String[] applicableFields) {
-      this.applicableFields = applicableFields;
-   }
+    private final String name;
+    private final String[] applicableFields;
 
-   public String[] getApplicableFields() {
-      return applicableFields;
-   }
+    private CitationType(String name, String[] applicableFields) {
+        this.name = name;
+        this.applicableFields = applicableFields;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    public String[] getApplicableFields() {
+        return applicableFields;
+    }
 }
