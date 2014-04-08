@@ -10,7 +10,7 @@
         <title>Citations</title>
     </head>
     <body>
-        <h1>Listing all citations</h1>
+        <h1>List of all citations</h1>
         <div>
             <table>
                 <tr>
@@ -38,5 +38,6 @@
             </table>
         </div>
         <p><a href="new">Create new citation</a></p>
+        <p><a href="tag">Create new tag</a></p>
     </body>
 </html>
