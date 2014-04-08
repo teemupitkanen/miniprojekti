@@ -83,7 +83,8 @@ public class Citation {
       String code = "@" + citeType + "{" + citeId + ",<br>";
 
       for (int i = 0; i < applicableFields.length; i++) {
-         String string = fields.get(applicableFields[i]);
+         String string = getField(applicableFields[i]);
+         System.out.println(string);
          if (!string.equals("")) {
             code += applicableFields[i] + " = {";
             String added = "";

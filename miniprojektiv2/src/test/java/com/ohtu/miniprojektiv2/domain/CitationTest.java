@@ -9,71 +9,82 @@ import static org.junit.Assert.*;
 
 public class CitationTest {
 
-    public CitationTest() {
-    }
-    private Citation inp;
+   public CitationTest() {
+   }
+   private Citation inp;
+   private Citation print;
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
+   @BeforeClass
+   public static void setUpClass() {
+   }
 
-    @AfterClass
-    public static void tearDownClass() {
-    }
+   @AfterClass
+   public static void tearDownClass() {
+   }
 
-    @Before
-    public void setUp() {
-      
-        inp = new Citation();
-        inp.setCiteType("inproceedings");
-        inp.setApplicableFields(CitationType.INPROCEEDINGS);
-    }
+   @Before
+   public void setUp() {
+      print = new Citation();
+      print.setApplicableFields(CitationType.INPROCEEDINGS);
+      print.setCiteType("inproceedings");
+      print.setCiteId("MAA95");
 
-    @Test
-    public void inproceedingsHaveUniqueId() {
-        Citation first = new Citation();
-        Citation another = new Citation();
-        assertFalse(another.getId() == first.getId());
-    }
+      inp = new Citation();
+      inp.setCiteType("inproceedings");
+      inp.setApplicableFields(CitationType.INPROCEEDINGS);
+   }
 
-    @Test
-    public void setSetsFieldCorrectly() {
-        inp.setField("title", "test");
-        assertEquals("test", inp.getField("title"));
-    }
+   @Test
+   public void inproceedingsHaveUniqueId() {
+      Citation first = new Citation();
+      Citation another = new Citation();
+      assertFalse(another.getId() == first.getId());
+   }
 
-    @Test
-    public void getEmptyFieldReturnsEmptyString() {
-        assertEquals("", inp.getField("title"));
-    }
+   @Test
+   public void setSetsFieldCorrectly() {
+      inp.setField("title", "test");
+      assertEquals("test", inp.getField("title"));
+   }
 
-    @Test
-    public void getNonexistentFieldReturnsEmptyString() {
-        assertEquals("", inp.getField("Foobar"));
-    }
-    
-    @Test
-    public void setNonexistentFieldDoesntAddSaidField() {
-        inp.setField("mike", "newfield");
-        assertEquals("", inp.getField("mike"));
-    }
-    @Test
-    public void creatingAnotherCitationTypeWorks(){
-       Citation book = new Citation();
-       book.setCiteId("KIRJA123");
-       book.setApplicableFields(CitationType.BOOK);
-       
-       assertEquals("KIRJA123", book.getCiteId());
-    }
-    @Test
-    public void printingBibTexWorks() {
-       inp.setCiteId("MAA95");  
-       inp.setField("author", "Mäkkylä");
-       inp.setField("title", "Coding for Dummies");
-       String correct = "@inproceedings{MAA95,<br>";
-       correct += "author = {M\"{a}kkyl\"{a} },<br>";
-       correct += "title = {Coding for Dummies} },<br>";
-       correct += "} <br>";
-    assertEquals(correct, inp.getBibTexForm());
-    }
+   @Test
+   public void getEmptyFieldReturnsEmptyString() {
+      assertEquals("", inp.getField("title"));
+   }
+
+   @Test
+   public void getNonexistentFieldReturnsEmptyString() {
+      assertEquals("", inp.getField("Foobar"));
+   }
+
+   @Test
+   public void setNonexistentFieldDoesntAddSaidField() {
+      inp.setField("mike", "newfield");
+      assertEquals("", inp.getField("mike"));
+   }
+
+   @Test
+   public void creatingAnotherCitationTypeWorks() {
+      Citation book = new Citation();
+      book.setCiteId("KIRJA123");
+      book.setApplicableFields(CitationType.BOOK);
+
+      assertEquals("KIRJA123", book.getCiteId());
+   }
+
+   @Test
+   public void printingBibTexWorks() {
+
+      print.setField("author", "Mäkkylä");
+      System.out.println(print.getCiteId());
+      System.out.println(print.getField(CitationType.INPROCEEDINGS.getApplicableFields()[0]));
+
+      print.setField("title", "Coding for Dummies");
+      System.out.println(print.getField("title"));
+      String correct = "@inproceedings{MAA95,<br>";
+      correct += "author = {M\"{a}kkyl\"{a} },<br>";
+      correct += "title = {Coding for Dummies} },<br>";
+      correct += "} <br>";
+      assertEquals(correct, inp.getBibTexForm());
+   }
 }
