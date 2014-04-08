@@ -4,6 +4,9 @@
     Author     : 41407
 --%>
 
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -63,6 +66,24 @@
             </c:forEach>
             -->
         </table>
+            <h3>Tags<h3>
+                <c:forEach items="${addedtags}" var="tag">
+                    <table>
+                        <tr>
+                            <td>${tag.name}</td>
+                        </tr>
+                    </table>
+                </c:forEach>  
+            <h3>Add new tag<h3>
+                <form:form commandName="tagcitation" action="${pageContext.request.contextPath}/tagcitation" method="POST">
+                    <select name="tagId">
+                    <c:forEach var="tag" items="${tags}">
+                        <option value="${tag.id}">${tag.name}</option>
+                    </c:forEach>
+                    </select>
+                    <input type="hidden" name="citationId" value="${citation.id}">
+                    <input type="submit" value="Tag">
+                </form:form>
         <br />
         <input type="button" value="Back" onclick="javascript:history.back()" />
     </body>

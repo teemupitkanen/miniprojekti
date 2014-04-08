@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Controller class for catching http requests
@@ -61,6 +62,8 @@ public class HomeController {
     @RequestMapping(value = "citations/{id}", method = RequestMethod.GET)
     public String viewCitation(Model model, @PathVariable Integer id) {
         model.addAttribute("citation", citationService.getById(id));
+        model.addAttribute("addedtags", tagService.listTagsByCitationId(id));
+        model.addAttribute("tags", tagService.getAllTags());
         return "viewCitation";
     }
 
@@ -112,7 +115,7 @@ public class HomeController {
      */
     @RequestMapping(value = "tag", method = RequestMethod.GET)
     public String showTagPage(Model model) {
-        model.addAttribute("tags", tagService.getAll());
+        model.addAttribute("tags", tagService.getAllTags());
         return "tag";
     }
     
@@ -122,15 +125,14 @@ public class HomeController {
      * @param tag rhymes well with fag
      * @return of the killer rabbit. He will nibble your legs off, you just wait.
      */
-    @RequestMapping(value = "deletetag/${tag}", method = RequestMethod.GET)
+    @RequestMapping(value = "deletetag/{tag}", method = RequestMethod.GET)
     public String deleteTag(Model model, @PathVariable Integer tag) {
         tagService.removeTag(tag);
-        model.addAttribute("tags", tagService.getAll());
-        return "redirect:listAll";
+        return "redirect:/tag";
     }
     
 //    /**
-//     * Creates a new tag and redirects to listAll page, unless there are errors.
+//     * Creates a new tag and redirects to tag page, unless there are errors.
 //     * Needs validation <-------------------
 //     * @param model
 //     * @param tag
@@ -138,7 +140,14 @@ public class HomeController {
 //     */
     @RequestMapping(value = "createtag", method = RequestMethod.POST)
     public String createTag(Model model, @ModelAttribute("tagname") String tag) {
-        //tagService.insert(tag);
+        tagService.createTag(tag);
+        return "redirect:tag";
+    }
+    
+    @RequestMapping(value = "tagcitation", method = RequestMethod.POST)
+    public String tagcitation(Model model, @RequestParam("citationId") Integer citationId,
+            @RequestParam("tagId") Integer tagId) {
+        tagService.addTagToCitation(citationId, tagId);
         return "redirect:listAll";
     }
 }
