@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>All citations in BibTex form:</h1>
-        <div>
+        <div id="code">
             <c:forEach var="citation" items="${citations}">
                 <p>${citation.bibTexForm}<br></p>
             </c:forEach>
