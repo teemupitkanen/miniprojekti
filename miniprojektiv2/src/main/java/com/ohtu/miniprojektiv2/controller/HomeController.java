@@ -1,11 +1,9 @@
 package com.ohtu.miniprojektiv2.controller;
 
 import com.ohtu.miniprojektiv2.domain.Citation;
-<<<<<<< HEAD
+
 import com.ohtu.miniprojektiv2.domain.CitationType;
-=======
 import com.ohtu.miniprojektiv2.domain.Tag;
->>>>>>> f528605b9146d685d074275988d5f74e9f49d2c3
 import com.ohtu.miniprojektiv2.service.CitationService;
 import com.ohtu.miniprojektiv2.service.TagCitationService;
 import com.ohtu.miniprojektiv2.service.TagService;
@@ -38,7 +36,7 @@ public class HomeController {
 
     @Autowired
     private TagCitationService tagCitationService;
-    
+
     @Autowired
     private TagService tagService;
 
@@ -144,57 +142,26 @@ public class HomeController {
         model.addAttribute("citations", citationService.listAll());
         return "listBibTeX";
     }
-<<<<<<< HEAD
-
-    /**
-     * Directs user to tag manipulation page
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "tag", method = RequestMethod.GET)
-    public String showTagPage(Model model) {
-        model.addAttribute("tags", tagService.getAll());
-        return "tag";
-    }
-
-=======
-    
-    
-    
+//
 //    /**
-//     * Directs user to tag manipulation page
-//     * @param model
-//     * @return 
+//     * Directs back to tag page after removing deleted tag from the tag list
+//     *
+//     * @param model has very small tits
+//     * @param tag rhymes well with fag
+//     * @return of the killer rabbit. He will nibble your legs off, you just
+//     * wait.
 //     */
-//    @RequestMapping(value = "tag", method = RequestMethod.GET)
-//    public String showTagPage(Model model) {
-//        model.addAttribute("tags", tagCitationService.getAllTags());
-//        return "tag";
+//    @RequestMapping(value = "deletetag/{tag}", method = RequestMethod.GET)
+//    public String deleteTag(Model model, @PathVariable Integer tag) {
+//        tagCitationService.removeTag(tag);
+//        tagService.remove(tag);
+//        return "redirect:listAll";
 //    }
-    
->>>>>>> f528605b9146d685d074275988d5f74e9f49d2c3
-    /**
-     * Directs back to tag page after removing deleted tag from the tag list
-     *
-     * @param model has very small tits
-     * @param tag rhymes well with fag
-     * @return of the killer rabbit. He will nibble your legs off, you just
-     * wait.
-     */
-    @RequestMapping(value = "deletetag/{tag}", method = RequestMethod.GET)
-    public String deleteTag(Model model, @PathVariable Integer tag) {
-        tagCitationService.removeTag(tag);
-        tagService.remove(tag);
-        return "redirect:listAll";
-    }
-<<<<<<< HEAD
 
-=======
-    
     /**
      * Directs to a page for managing tag
-     * @param model 
+     *
+     * @param model
      * @param tagId
      * @return
      */
@@ -203,24 +170,11 @@ public class HomeController {
         model.addAttribute("tag", tagService.getById(tag));
         return "viewTag";
     }
-    
->>>>>>> f528605b9146d685d074275988d5f74e9f49d2c3
-//    /**
-//     * Creates a new tag and redirects to tag page, unless there are errors.
-//     * Needs validation <-------------------
-//     * @param model
-//     * @param tag
-//     * @return 
-//     */
-//    @RequestMapping(value = "createtag", method = RequestMethod.POST)
-//    public String createTag(Model model, @ModelAttribute("tagname") String tag) {
-//        tagCitationService.createTag(tag);
-//        return "redirect:tag";
-//    }
-    
+
     /**
      * Directs to citation list after adding existing tag
-     * @param citationId 
+     *
+     * @param citationId
      * @param tagId Id of tag to be added
      * @return
      */
@@ -230,10 +184,11 @@ public class HomeController {
         tagCitationService.addTagToCitation(citationId, tagId);
         return "redirect:citations/" + citationId;
     }
-    
+
     /**
      * Directs to citation list after adding new tag
-     * @param citationId 
+     *
+     * @param citationId
      * @param tagName Name of the new tag
      * @return
      */
