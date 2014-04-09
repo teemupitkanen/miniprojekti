@@ -85,27 +85,25 @@ public class Citation {
     public void setFields(Map<String, String> fields) {
         this.fields = fields;
     }
-
+    /**
+     * Returns the citation in BibTeX format 
+     * @return 
+     */
     public String getBibTexForm() {
         String code = "@" + "citeType.getName()"+ "{" + citeId + ",<br>";
         for (Map.Entry<String, String> entry : fields.entrySet()){
-            code += entry.getKey()+"= {"+replaceNordics(entry.getValue())+"},<br>";
+            if(!entry.getValue().equals("")){
+                code += entry.getKey()+"= {"+replaceNordics(entry.getValue())+"},<br>";
+            }
         }
-
-//        
-        
-//        for (String string : lista) {
-//            code+=string +" = {"+replaceNordics(fields.get(string))+"},<br>";
-//        }
-//        for (int i = 0; i < fields.size(); i++) {
-//            if (!fields.get(applicableFields[i]).equals("")) {
-//                code += applicableFields[i] + " = {" + replaceNordics(fields.get(applicableFields[i])) + "},<br>";
-//            }
-//        }
         code += "} <br>";
         return code;
     }
-
+    /**
+     * Replaces nordics in the input string with BibTeX format
+     * @param string
+     * @return 
+     */
     private String replaceNordics(String string) {
         string = string.replaceAll("å", "{\\\\aa}");
         string = string.replaceAll("ä", "{\\\\\"a}");
