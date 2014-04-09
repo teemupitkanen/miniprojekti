@@ -11,14 +11,8 @@ import java.util.List;
 public interface TagCitationService {
 
     void addTagToCitation(Integer citationId, Integer tagId);
-    
-    void addTagToCitation(Integer citationId, String tagName);
 
     List<TagCitation> getAll();
-    
-    List<Tag> listTagsByCitationId(Integer citationId);
-    
-    List<Tag> getTagsNotLinkedToCitation(Integer CitationId);
     
     void removeTagFromCitation(Integer citationId, Integer tagId);
 

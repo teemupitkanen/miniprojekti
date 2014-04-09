@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface TagService {
 
+    Tag getById(Integer tagId);
+    
     Tag createTag(String name);
 
     List<Tag> getTagsByListOfIDs(List<Integer> tagIDs);

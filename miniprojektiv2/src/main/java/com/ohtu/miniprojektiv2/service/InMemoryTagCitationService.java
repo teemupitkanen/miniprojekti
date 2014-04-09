@@ -15,9 +15,6 @@ import org.springframework.stereotype.Service;
 public class InMemoryTagCitationService implements TagCitationService {
 
     private List<TagCitation> tagCitations;
-
-    //@Autowired <---
-    private TagService tagService = new InMemoryTagService();
     
     public InMemoryTagCitationService() {
         tagCitations = new ArrayList();
@@ -27,28 +24,10 @@ public class InMemoryTagCitationService implements TagCitationService {
     public void addTagToCitation(Integer citationId, Integer tagId) {
         tagCitations.add(new TagCitation(citationId, tagId));
     }
-    
-    @Override
-    public void addTagToCitation(Integer citationId, String tagName) {
-        Tag tag = tagService.createTag(tagName);
-        tagCitations.add(new TagCitation(citationId, tag.getId()));
-    }
 
     @Override
     public List<TagCitation> getAll() {
         return tagCitations;
-    }
-    
-    @Override
-    public List<Tag> listTagsByCitationId(Integer citationId) {
-        List<Integer> tagIDs = this.getTagsByCitationId(citationId);
-        return tagService.getTagsByListOfIDs(tagIDs);
-    }
-    
-    @Override
-    public List<Tag> getTagsNotLinkedToCitation(Integer citationId) {
-        List<Integer> linkedTags = this.getTagsByCitationId(citationId);
-        return tagService.getMissingTagsByTagIDs(linkedTags);
     }
 
     @Override
@@ -97,7 +76,6 @@ public class InMemoryTagCitationService implements TagCitationService {
         for (TagCitation tagCitation : toBeRemoved) {
             tagCitations.remove(tagCitation);
         }
-        tagService.remove(tagId);
     }
 
     @Override

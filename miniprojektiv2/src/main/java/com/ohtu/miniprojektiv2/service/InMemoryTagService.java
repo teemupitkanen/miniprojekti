@@ -49,4 +49,9 @@ public class InMemoryTagService implements TagService {
     public void remove(int tagId) {
         tags.remove(tagId);
     }
+
+    @Override
+    public Tag getById(Integer tagId) {
+        return tags.get(tagId);
+    }
 }

@@ -1,8 +1,11 @@
 package com.ohtu.miniprojektiv2.controller;
 
 import com.ohtu.miniprojektiv2.domain.Citation;
+import com.ohtu.miniprojektiv2.domain.Tag;
 import com.ohtu.miniprojektiv2.service.CitationService;
 import com.ohtu.miniprojektiv2.service.TagCitationService;
+import com.ohtu.miniprojektiv2.service.TagService;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +32,9 @@ public class HomeController {
     
     @Autowired
     private TagCitationService tagCitationService;
+    
+    @Autowired
+    private TagService tagService;
 
     /**
      * For now, list all citations when accessing root address
@@ -62,8 +68,9 @@ public class HomeController {
     @RequestMapping(value = "citations/{id}", method = RequestMethod.GET)
     public String viewCitation(Model model, @PathVariable Integer id) {
         model.addAttribute("citation", citationService.getById(id));
-        model.addAttribute("addedtags", tagCitationService.listTagsByCitationId(id));
-        model.addAttribute("missingtags", tagCitationService.getTagsNotLinkedToCitation(id));
+        List<Integer> addedTagIDs = tagCitationService.getTagsByCitationId(id);
+        model.addAttribute("addedtags", tagService.getTagsByListOfIDs(addedTagIDs));
+        model.addAttribute("missingtags", tagService.getMissingTagsByTagIDs(addedTagIDs));
         return "viewCitation";
     }
 
@@ -128,6 +135,7 @@ public class HomeController {
     @RequestMapping(value = "deletetag/{tag}", method = RequestMethod.GET)
     public String deleteTag(Model model, @PathVariable Integer tag) {
         tagCitationService.removeTag(tag);
+        tagService.remove(tag);
         return "redirect:listAll";
     }
     
@@ -137,9 +145,9 @@ public class HomeController {
      * @param tagId
      * @return
      */
-    @RequestMapping(value = "viewTag/{tag}", method = RequestMethod.GET)
-    public String viewTag(Model model, @PathVariable Integer tagId) {
-        model.addAttribute("tag", tagCitationService.getCitationsByTagId(tagId));
+    @RequestMapping(value = "citations/viewtag/{tag}", method = RequestMethod.GET)
+    public String viewTag(Model model, @PathVariable Integer tag) {
+        model.addAttribute("tag", tagService.getById(tag));
         return "viewTag";
     }
     
@@ -166,7 +174,7 @@ public class HomeController {
     public String tagcitation(Model model, @RequestParam("citationId") Integer citationId,
             @RequestParam("tagId") Integer tagId) {
         tagCitationService.addTagToCitation(citationId, tagId);
-        return "redirect:listAll";
+        return "redirect:citations/" + citationId;
     }
     
     /**
@@ -178,7 +186,8 @@ public class HomeController {
     @RequestMapping(value = "tagwithnew", method = RequestMethod.POST)
     public String tagcitation(Model model, @RequestParam("citationId") Integer citationId,
             @RequestParam("tagName") String tagName) {
-        tagCitationService.addTagToCitation(citationId, tagName);
-        return "redirect:listAll";
+        Tag tag = tagService.createTag(tagName);
+        tagCitationService.addTagToCitation(citationId, tag.getId());
+        return "redirect:citations/" + citationId;
     }
 }

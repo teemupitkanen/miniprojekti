@@ -70,7 +70,7 @@
                 <c:forEach items="${addedtags}" var="tag">
                     <table>
                         <tr>
-                            <td><a href="viewTag/${tag.id}">${tag.name}</a></td>
+                            <td><a href="viewtag/${tag.id}">${tag.name}</a></td>
                         </tr>
                     </table>
                 </c:forEach>  
