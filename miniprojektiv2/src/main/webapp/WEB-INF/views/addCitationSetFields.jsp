@@ -27,7 +27,8 @@
                         <td> <input name="fields['${fields.key}']" value="${fields.value}"/></td>
                     </tr>                
                 </c:forEach>
-            </table> 
+            </table>
+            <input type="hidden" name="citationType" value="${citationType}">
             <input type="submit">
         </form:form>
     </body>

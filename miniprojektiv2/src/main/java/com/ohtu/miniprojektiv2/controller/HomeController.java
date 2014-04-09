@@ -121,10 +121,17 @@ public class HomeController {
      */
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String createNewCitation(@Valid @ModelAttribute("citation") Citation citation,
-            BindingResult bindingResult) {
+            @RequestParam("citationType") String citationType,BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "new";
         } else {
+            if (citationType.contains("oo")) {
+                citation.changeCiteType(CitationType.BOOK);
+            } else if (citationType.contains("icl")) {
+                citation.changeCiteType(CitationType.ARTICLE);
+            } else {
+                citation.changeCiteType(CitationType.INPROCEEDINGS);
+            }
             citationService.insert(citation);
             return "redirect:listAll";
         }

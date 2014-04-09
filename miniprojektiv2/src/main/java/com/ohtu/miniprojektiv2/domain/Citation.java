@@ -34,6 +34,10 @@ public class Citation {
         this.setApplicableFields(citeType);
     }
 
+    public void changeCiteType(CitationType citeType) {
+        this.citeType = citeType;
+    }
+    
     public CitationType getCiteType() {
         return citeType;
     }
@@ -90,7 +94,7 @@ public class Citation {
      * @return 
      */
     public String getBibTexForm() {
-        String code = "@" + "citeType.getName()"+ "{" + citeId + ",<br>";
+        String code = "@" + citeType.getName()+ "{" + citeId + ",<br>";
         for (Map.Entry<String, String> entry : fields.entrySet()){
             if(!entry.getValue().equals("")){
                 code += entry.getKey()+"= {"+replaceNordics(entry.getValue())+"},<br>";

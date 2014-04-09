@@ -15,7 +15,7 @@
         <title>Viewing citation</title>
     </head>
     <body>
-        <h2>Citation</h2>
+        <h2>Citation: ${citation.citeType.name}</h2>
         <table>
             <tr>
                 <th>Field</th>
