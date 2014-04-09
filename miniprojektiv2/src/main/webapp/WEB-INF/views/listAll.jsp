@@ -39,5 +39,6 @@
         </div>
         <p><a href="new">Create new citation</a></p>
         <p><a href="tag">Create new tag</a></p>
+        <p><a href="bibtex">View citations in BibTeX format</a></p>
     </body>
 </html>
