@@ -38,7 +38,11 @@
             </table>
         </div>
         <p><a href="new">Create new citation</a></p>
+<<<<<<< HEAD
         <p><a href="tag">Create new tag</a></p>
         <p><a href="bibtex">View citations in BibTeX format</a></p>
+=======
+        <!--<p><a href="tag">Create new tag</a></p>-->
+>>>>>>> f528605b9146d685d074275988d5f74e9f49d2c3
     </body>
 </html>

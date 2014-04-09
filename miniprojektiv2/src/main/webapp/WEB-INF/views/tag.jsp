@@ -4,6 +4,8 @@
     Author     : Santeri
 --%>
 
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,8 +24,8 @@
             <pre>
                 <c:forEach var="tag" items="${tags}">
                     <tr>
-                        <td>${tag}</td>
-                        <td><a href="deletetag/${tag}">delete</a></td>
+                        <td>${tag.name}</td>
+                        <td><a href="deletetag/${tag.id}">delete</a></td>
                     </tr>
                 </c:forEach>
             </pre>

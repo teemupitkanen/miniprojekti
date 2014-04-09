@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  */
 public class TagServiceTest {
 
-    TagService ts = new TagService();
+    InMemoryTagCitationService ts = new InMemoryTagCitationService();
     Citation c = new Citation();
     Tag t = new Tag("Koira");
 
