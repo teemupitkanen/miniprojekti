@@ -29,14 +29,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
     /**
-     * Service class for storing information
+     * Service class for storing information.
      */
     @Autowired
     private CitationService citationService;
 
+    /**
+     * 
+     */
     @Autowired
     private TagCitationService tagCitationService;
 
+    /**
+     * Provides the needed functionalities for handling tags.
+     */
     @Autowired
     private TagService tagService;
 
@@ -93,7 +99,8 @@ public class HomeController {
     }
 
     /**
-     * Directs user to a citation creation form
+     * Directs user to a citation creation form, with the proper
+     * citation type added to the citation object.
      *
      * @return name of the .jsp page
      */
