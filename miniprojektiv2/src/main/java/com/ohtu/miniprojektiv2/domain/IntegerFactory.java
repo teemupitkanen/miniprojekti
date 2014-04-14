@@ -12,4 +12,9 @@ public class IntegerFactory {
     public static Integer next() {
         return integer++;
     }
+    
+    public static Integer reset() {
+        integer = 0;
+        return integer;
+    }
 }
