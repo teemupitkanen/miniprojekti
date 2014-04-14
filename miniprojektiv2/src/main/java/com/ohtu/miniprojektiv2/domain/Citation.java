@@ -113,11 +113,11 @@ public class Citation {
      */
     private String replaceNordics(String string) {
         string = string.replaceAll("å", "{\\\\aa}");
-        string = string.replaceAll("ä", "{\\\\\"a}");
-        string = string.replaceAll("ö", "{\\\\\"o}");
+        string = string.replaceAll("ä", "\\\\\"{a}");
+        string = string.replaceAll("ö", "\\\\\"{o}");
         string = string.replaceAll("Å", "{\\\\AA}");
-        string = string.replaceAll("Ä", "{\\\\\"A}");
-        string = string.replaceAll("Ö", "{\\\\\"O}");
+        string = string.replaceAll("Ä", "\\\\\"{A}");
+        string = string.replaceAll("Ö", "\\\\\"{O}");
         return string;
     }
 }
