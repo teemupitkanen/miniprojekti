@@ -18,13 +18,13 @@ import static org.junit.Assert.*;
  *
  * @author 41407
  */
-public class TagServiceTest {
+public class InMemoryTagCitationServiceTest {
 
     InMemoryTagCitationService ts = new InMemoryTagCitationService();
     Citation c = new Citation();
     Tag t = new Tag("Koira");
 
-    public TagServiceTest() {
+    public InMemoryTagCitationServiceTest() {
     }
 
     @Before
@@ -54,6 +54,17 @@ public class TagServiceTest {
         ts.removeTagFromCitation(3, 3);
         List tagCitations = ts.getAll();
         assertTrue(tagCitations.contains(new TagCitation(2, 2)));
+        assertFalse(tagCitations.contains(new TagCitation(3, 3)));
+    }
+    
+    @Test
+    public void correctTagIsRemovedWhenMultipleTagsOnSameCitation() {
+        for (int i = 0; i < 10; i++) {
+            ts.addTagToCitation(3, i);
+        }
+        ts.removeTagFromCitation(3, 3);
+        List tagCitations = ts.getAll();
+        assertTrue(tagCitations.contains(new TagCitation(3, 2)));
         assertFalse(tagCitations.contains(new TagCitation(3, 3)));
     }
 
