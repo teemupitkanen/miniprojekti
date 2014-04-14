@@ -175,6 +175,8 @@ public class HomeController {
     @RequestMapping(value = "citations/viewtag/{tag}", method = RequestMethod.GET)
     public String viewTag(Model model, @PathVariable Integer tag) {
         model.addAttribute("tag", tagService.getById(tag));
+        List<Citation> citations = citationService.getCitationsByListOfIds(tagCitationService.getCitationsByTagId(tag));
+        model.addAttribute("citations", citations);
         return "viewTag";
     }
 
