@@ -51,9 +51,15 @@ public class InMemoryCitationServiceTest {
     }
 
     @Test
-    public void getByIdReturnsCorrectly() {
+    public void getByIdReturnsCorrectlyWithExistingId() {
         serv.insert(stubCitation);
         assertEquals(stubCitation, serv.getById(stubCitation.getId()));
+    }
+    
+    @Test
+    public void getByIdReturnsNullWithNonexistentId() {
+        serv.insert(stubCitation);
+        assertEquals(null, serv.getById(stubCitation.getId()+1));
     }
 
     @Test
