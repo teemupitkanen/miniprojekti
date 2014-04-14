@@ -1,7 +1,6 @@
 package com.ohtu.miniprojektiv2.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Citation {
@@ -14,7 +13,7 @@ public class Citation {
 
     public Citation() {
         this.id = IntegerFactory.next();
-        fields = new HashMap();
+        fields = new LinkedHashMap();
     }
 
     public int getId() {
@@ -37,7 +36,7 @@ public class Citation {
     public void changeCiteType(CitationType citeType) {
         this.citeType = citeType;
     }
-    
+
     public CitationType getCiteType() {
         return citeType;
     }
@@ -45,11 +44,11 @@ public class Citation {
     /**
      * Sets which fields can be set for this citation, as specified by its
      * citation type.
-     * 
-     * @param type 
+     *
+     * @param type
      */
     private void setApplicableFields(CitationType type) {
-        fields = new HashMap();
+        fields = new LinkedHashMap();
         this.applicableFields = type.getApplicableFields();
         for (String string : applicableFields) {
             fields.put(string, "");
@@ -89,24 +88,28 @@ public class Citation {
     public void setFields(Map<String, String> fields) {
         this.fields = fields;
     }
+
     /**
-     * Returns the citation in BibTeX format 
-     * @return 
+     * Returns the citation in BibTeX format
+     *
+     * @return
      */
     public String getBibTexForm() {
-        String code = "@" + citeType.getName()+ "{" + citeId + ",<br>";
-        for (Map.Entry<String, String> entry : fields.entrySet()){
-            if(!entry.getValue().equals("")){
-                code += entry.getKey()+"= {"+replaceNordics(entry.getValue())+"},<br>";
+        String code = "@" + citeType.getName() + "{" + citeId + ",<br>";
+        for (Map.Entry<String, String> entry : fields.entrySet()) {
+            if (!entry.getValue().equals("")) {
+                code += entry.getKey() + "= {" + replaceNordics(entry.getValue()) + "},<br>";
             }
         }
         code += "} <br>";
         return code;
     }
+
     /**
      * Replaces nordics in the input string with BibTeX format
+     *
      * @param string
-     * @return 
+     * @return
      */
     private String replaceNordics(String string) {
         string = string.replaceAll("å", "{\\\\aa}");
