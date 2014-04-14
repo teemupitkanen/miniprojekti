@@ -112,7 +112,7 @@ public class InMemoryTagServiceTest {
         }
         assertArrayEquals(expecteds, actuals);
     }
-    
+
     @Test
     public void removeRemovesCorrectTag() {
         IntegerFactory.reset();

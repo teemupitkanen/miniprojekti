@@ -52,10 +52,6 @@ public class InMemoryTagService implements TagService {
 
     @Override
     public Tag getById(Integer tagId) {
-        try {
-            return tags.get(tagId);
-        } catch (Exception e) {
-            return null;
-        }
+        return tags.get(tagId);
     }
 }
