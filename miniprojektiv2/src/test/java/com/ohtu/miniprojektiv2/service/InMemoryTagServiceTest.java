@@ -112,4 +112,14 @@ public class InMemoryTagServiceTest {
         }
         assertArrayEquals(expecteds, actuals);
     }
+    
+    @Test
+    public void removeRemovesCorrectTag() {
+        IntegerFactory.reset();
+        ts.createTag("Test1");
+        ts.createTag("Test2");
+        ts.remove(0);
+        assertNull(ts.getById(0));
+        assertEquals("Test2", ts.getById(1).getName());
+    }
 }
