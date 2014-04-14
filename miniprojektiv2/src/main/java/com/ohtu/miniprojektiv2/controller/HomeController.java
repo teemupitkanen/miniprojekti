@@ -203,7 +203,10 @@ public class HomeController {
     public String tagcitation(Model model, @RequestParam("citationId") Integer citationId,
             @RequestParam("tagName") String tagName) {
         Tag tag = tagService.createTag(tagName);
-        tagCitationService.addTagToCitation(citationId, tag.getId());
+        if (tag != null) {
+            tagCitationService.addTagToCitation(citationId, tag.getId());
+        }
+        
         return "redirect:citations/" + citationId;
     }
 }
