@@ -1,6 +1,5 @@
 package com.ohtu.miniprojektiv2.domain;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -70,7 +69,7 @@ public class CitationTest {
        inp.setField("author", "Ä");
        inp.setField("title", "Coding for Dummies");
        String correct = "@inproceedings{MAA95,<br>";
-       correct += "author= {"+"{\\\"A}"+"},<br>";
+       correct += "author= {\\\"{A}},<br>";
        correct += "title= {Coding for Dummies},<br>";
        correct += "} <br>";
     assertEquals(correct, inp.getBibTexForm());
