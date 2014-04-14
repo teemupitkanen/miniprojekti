@@ -11,31 +11,31 @@ import org.springframework.stereotype.Service;
  *
  * @author lauri
  */
-
 @Service
 public class InMemoryTagService implements TagService {
+
     private Map<Integer, Tag> tags;
-    
+
     public InMemoryTagService() {
         tags = new HashMap();
     }
-    
+
     @Override
     public Tag createTag(String name) {
         Tag tag = new Tag(name);
         tags.put(tag.getId(), tag);
         return tag;
     }
-    
+
     @Override
     public List<Tag> getTagsByListOfIDs(List<Integer> tagIDs) {
         List<Tag> tagList = new ArrayList();
-        for(int id : tagIDs) {
+        for (int id : tagIDs) {
             tagList.add(tags.get(id));
         }
         return tagList;
     }
-    
+
     @Override
     public List<Tag> getMissingTagsByTagIDs(List<Integer> tagIDs) {
         List<Tag> tagList = new ArrayList(tags.values());
@@ -44,7 +44,7 @@ public class InMemoryTagService implements TagService {
         }
         return tagList;
     }
-    
+
     @Override
     public void remove(int tagId) {
         tags.remove(tagId);
@@ -52,6 +52,10 @@ public class InMemoryTagService implements TagService {
 
     @Override
     public Tag getById(Integer tagId) {
-        return tags.get(tagId);
+        try {
+            return tags.get(tagId);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
