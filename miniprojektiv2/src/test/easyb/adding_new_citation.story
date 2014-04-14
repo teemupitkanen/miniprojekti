@@ -1,6 +1,7 @@
 import com.ohtu.miniprojektiv2.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.support.ui.Select;
 
 description 'user can add inproceedings citation'
 
@@ -8,6 +9,10 @@ scenario "user can add inproceedings citation with correct entries", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
         driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("inproceedings");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
     }
     when 'valid citation entries are given', {
         element = driver.findElement(By.name("fields['author']"));

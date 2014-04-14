@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.ohtu.miniprojektiv2.domain;
 
 /**
@@ -15,5 +11,10 @@ public class IntegerFactory {
 
     public static Integer next() {
         return integer++;
+    }
+    
+    public static Integer reset() {
+        integer = 0;
+        return integer;
     }
 }
