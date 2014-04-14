@@ -1,51 +1,94 @@
 package com.ohtu.miniprojektiv2.service;
 
 import com.ohtu.miniprojektiv2.domain.Citation;
-import com.ohtu.miniprojektiv2.service.InMemoryCitationService;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
 
 public class InMemoryCitationServiceTest {
 
-   private InMemoryCitationService serv;
-   private Citation in;
+    private InMemoryCitationService serv;
+    private Citation stubCitation;
 
-   /**
-    * Tests for InMemoryCitationService
-    */
-   public InMemoryCitationServiceTest() {
-      this.serv = new InMemoryCitationService();
-   }
-   
-   @Before
-   public void Before(){
- //     this.in = new Citation("Bill", "How to Code", "Coding fo Dummies", "2999","editor", "number", "series", "1000", "address", "January", "organization", "publisher", "note", "key");
-   }
+    private class CitationStub extends Citation {
 
-   @Test
-   public void addingNewInproceedings() {
- //     serv.insert(in);
+    }
 
-//      String author = serv.listAll().get(0).getAuthor();
+    @Before
+    public void setUp() {
+        serv = new InMemoryCitationService();
+        stubCitation = new CitationStub();
+    }
 
-//      assertEquals(in.getAuthor(), author);
+    @Test
+    public void constructorInitializesFields() {
+        try {
+            serv.listAll();
+        } catch (NullPointerException e) {
+            fail();
+        }
+    }
 
-   }
-   
-   @Test
-   public void searchingInproceedins() {
-  //    serv.insert(in);
-  //    Citation found = serv.getById(in.getId());
+    @Test
+    public void canAddSingleCitation() {
+        serv.insert(stubCitation);
+        List<Citation> expected = new ArrayList();
+        expected.add(stubCitation);
+        assertEquals(expected, serv.listAll());
+    }
 
-  //    assertEquals(in.getAuthor(), found.getAuthor());
+    @Test
+    public void canAddMultipleCitations() {
+        List<Citation> expected = new ArrayList();
+        for (int i = 0; i < 10; i++) {
+            Citation stub = new CitationStub();
+            serv.insert(stub);
+            expected.add(stub);
+        }
+        assertEquals(expected, serv.listAll());
+    }
 
-   }
-   @Test
-   public void searchingUnexistentInproceedins() {
-/*      serv.insert(in);
-      Citation found = serv.getById(666);
+    @Test
+    public void getByIdReturnsCorrectlyWithExistingId() {
+        serv.insert(stubCitation);
+        assertEquals(stubCitation, serv.getById(stubCitation.getId()));
+    }
+    
+    @Test
+    public void getByIdReturnsNullWithNonexistentId() {
+        serv.insert(stubCitation);
+        assertEquals(null, serv.getById(stubCitation.getId()+1));
+    }
 
-      assertEquals(null, found);
-  */ }
+    @Test
+    public void getByListOfIDsReturnsCorrectCitations() {
+        List<Integer> IDs = new ArrayList();
+        List<Citation> expecteds = new ArrayList();
+        for (int i = 0; i < 10; i++) {
+            Citation stub = new CitationStub();
+            IDs.add(stub.getId());
+            expecteds.add(stub);
+            serv.insert(stub);
+        }
+        assertEquals(expecteds, serv.getCitationsByListOfIds(IDs));
+    }
+
+    @Test
+    public void getByListOfIDsDoesntReturnExtraCitations() {
+        List<Integer> IDs = new ArrayList();
+        List<Citation> expecteds = new ArrayList();
+        for (int i = 0; i < 10; i++) {
+            Citation stub = new CitationStub();
+            IDs.add(stub.getId());
+            expecteds.add(stub);
+            serv.insert(stub);
+        }
+        for (int i = 0; i < 10; i++) {
+            Citation stub = new CitationStub();
+            serv.insert(stub);
+        }
+        assertEquals(expecteds, serv.getCitationsByListOfIds(IDs));
+    }
 }

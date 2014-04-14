@@ -20,7 +20,14 @@
             <input type="hidden" name="tagId" value="${tag.id}">
             <input type="submit" value="Delete tag">
         </form:form>--%>
+        <p>Citations tagged with ${tag.name}:</p>
+        <ul>
+            <c:forEach items="${citations}" var="citation" varStatus="status">
+                <!-- TODO fix link -->
+                <li><a href="/citations/${citation.citeId}">${citation.citeId}</a>
+                </li>
+            </c:forEach>
+        </ul>
+        <input type="button" value="Back" onclick="listAll" />
     </body>
-    <br/>
-    <input type="button" value="Back" onclick="javascript:history.back()" />
 </html>
