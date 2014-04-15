@@ -1,7 +1,5 @@
 <%-- 
-    Document   : viewTag
-    Created on : Apr 8, 2014, 10:57:24 PM
-    Author     : lauri
+    A page for viewing a chosen tag.
 --%>
 
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>

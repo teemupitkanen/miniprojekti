@@ -1,4 +1,3 @@
-
 package com.ohtu.miniprojektiv2.service;
 
 import com.ohtu.miniprojektiv2.domain.Citation;
@@ -6,11 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
+/**
+ * Controls adding, listing and searching inproceedings-cites. The
+ * methods are described in the interface class.
+ * @see com.ohtu.miniprojektiv2.service.CitationService
+ */
 @Service
 public class InMemoryCitationService implements CitationService {
 
     /**
-     * Controls adding, listing and searching inproceedings-cites
+     * Class list object for keeping track of Citations.
      */
     private List<Citation> list;
 
@@ -46,5 +50,4 @@ public class InMemoryCitationService implements CitationService {
         }
         return returnList;
     }
-
 }

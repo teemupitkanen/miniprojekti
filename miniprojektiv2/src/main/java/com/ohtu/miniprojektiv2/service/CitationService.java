@@ -29,5 +29,11 @@ public interface CitationService {
     */
    public Citation getById(Integer id);
 
+   /**
+    * For finding citation by giving a list of id numbers as search
+    * criteria.
+    * @param citationIDs is a list of Integers.
+    * @return returns a list of Citation objects.
+    */
    List<Citation> getCitationsByListOfIds(List<Integer> citationIDs);
 }

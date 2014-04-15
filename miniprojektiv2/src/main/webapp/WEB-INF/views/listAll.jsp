@@ -1,3 +1,8 @@
+<%--
+    This page lists all the citations (if any have been created) and acts
+    as the main page of the site.
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"

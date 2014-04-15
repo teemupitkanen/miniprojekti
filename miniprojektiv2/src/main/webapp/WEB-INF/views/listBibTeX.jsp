@@ -1,6 +1,11 @@
+<%--
+    This page shows all the created citations in BibTeX form.
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <link href="<c:url value="/resources/style.css" />" rel="stylesheet">
@@ -8,7 +13,7 @@
         <title>Listing in BibTeX-form</title>
     </head>
     <body>
-        <h1>All citations in BibTex form:</h1>
+        <h1>All citations in BibTeX form:</h1>
         <div id="code">
             <c:forEach var="citation" items="${citations}">
                 <p>${citation.bibTexForm}<br></p>
