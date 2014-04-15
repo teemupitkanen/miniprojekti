@@ -6,6 +6,7 @@ import java.util.Map;
 /**
  * The main class for citations. Works together with CitationType
  * class.
+ *
  * @author santerim
  */
 public class Citation {
@@ -14,23 +15,23 @@ public class Citation {
      * An id number that is used for singling out a citation.
      */
     private int id;
-    
+
     /**
      * A map for storing the field names.
      */
     private Map<String, String> fields;
-    
+
     /**
      * A citation id, that is used in the BibTeX output, and defined by
      * the user.
      */
     private String citeId;
-    
+
     /**
      * The type a citation has = article, inproceedings or book.
      */
     private CitationType citeType;
-    
+
     /**
      * An array of the string names that are applicable with a given citation
      * type.
@@ -55,6 +56,7 @@ public class Citation {
 
     /**
      * Sets the citeId number for a citation, and is given by the user.
+     *
      * @param citeId an identifying id string that has been received from
      * citation creation form.
      */
@@ -72,7 +74,8 @@ public class Citation {
     /**
      * Sets the citation type, which defines the required fields for
      * creating a new citation.
-     * @param citeType 
+     *
+     * @param citeType
      */
     public void setCiteType(CitationType citeType) {
         this.citeType = citeType;
@@ -81,12 +84,13 @@ public class Citation {
 
     /**
      * Changes the citeType of a citation.
+     *
      * @param citeType is the new citeType wanted.
      */
     public void changeCiteType(CitationType citeType) {
         this.citeType = citeType;
     }
-    
+
     /**
      * @return returns the citation's citeType.
      */
@@ -143,6 +147,7 @@ public class Citation {
 
     /**
      * Sets the fields for the citation.
+     *
      * @param fields is the field map.
      */
     public void setFields(Map<String, String> fields) {
@@ -168,6 +173,7 @@ public class Citation {
     /**
      * Replaces ascii incompatible characters in the input string with
      * BibTeX format
+     *
      * @param string
      * @return
      */
@@ -179,5 +185,26 @@ public class Citation {
         string = string.replaceAll("Ä", "\\\\\"{A}");
         string = string.replaceAll("Ö", "\\\\\"{O}");
         return string;
+    }
+
+    public boolean hasErrors() {
+        int i = 0;
+        if (this.citeId.length() == 0) {
+            return true;
+        }
+        for (String string : this.citeType.getApplicableFields()) {
+            if (fields.get(string).length() == 0) {
+                return true;
+            }
+            i++;
+            if (i > 3) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public String getErrors() {
+        return "There were some errors.";
     }
 }
