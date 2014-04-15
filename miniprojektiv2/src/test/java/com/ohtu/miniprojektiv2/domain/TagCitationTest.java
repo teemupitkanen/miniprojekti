@@ -33,4 +33,10 @@ public class TagCitationTest {
         int[] actuals = {tc.getCitationId(), tc.getTagId()};
         assertArrayEquals(expecteds, actuals);
     }
+
+    @Test
+    public void equals() {
+        assertFalse(tc.equals(null));
+        assertFalse(tc.equals(new Integer(1)));
+    }
 }
