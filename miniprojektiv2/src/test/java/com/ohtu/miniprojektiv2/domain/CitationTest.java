@@ -70,19 +70,7 @@ public class CitationTest {
         inp.setCiteId("Test");
         assertEquals("Test", inp.getCiteId());
     }
-    
-    @Test
-    public void printingBibTexWorks() {
-       inp.setCiteId("MAA95");  
-       inp.setField("author", "Ä");
-       inp.setField("title", "Coding for Dummies");
-       String correct = "@inproceedings{MAA95,<br>";
-       correct += "author= {\\\"{A}},<br>";
-       correct += "title= {Coding for Dummies},<br>";
-       correct += "} <br>";
-    assertEquals(correct, inp.getBibTexForm());
-    }
-    
+
     @Test
     public void setCiteType() {
         inp.changeCiteType(CitationType.BOOK);

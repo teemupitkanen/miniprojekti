@@ -15,8 +15,8 @@
     <body>
         <h1>All citations in BibTeX form:</h1>
         <div id="code">
-            <c:forEach var="citation" items="${citations}">
-                <p>${citation.bibTexForm}<br></p>
+            <c:forEach var="citation" items="${bibtexList}">
+                <p>${citation}<br></p>
             </c:forEach>
         </div>
         <p><a href="/">Home</a></p>
