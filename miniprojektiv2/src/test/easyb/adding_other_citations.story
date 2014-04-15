@@ -5,9 +5,11 @@ import org.openqa.selenium.support.ui.Select;
 
 description 'user can add other citations'
 
-scenario "user can add book citations with required entries", {
+scenario "user can add book citation with required entries", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
+        driver.get("http://localhost:8090/listAll");
+        lkm = driver.findElements(By.linkText("view")).size();
         driver.get("http://localhost:8090/new");
 	Select select = new Select(driver.findElement(By.name("citationType")));
 	select.selectByVisibleText("book");
@@ -15,8 +17,11 @@ scenario "user can add book citations with required entries", {
 	element.submit();
     }
     when 'valid citation entries are given', {
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("test");
+
         element = driver.findElement(By.name("fields['author']"));
-        element.sendKeys("erkki esimerkki");
+        element.sendKeys("harrharr");
 
         element = driver.findElement(By.name("fields['title']"));
         element.sendKeys("foo");
@@ -30,19 +35,20 @@ scenario "user can add book citations with required entries", {
         element.submit();
     }
     then 'user can add new citation', {
-	WebElement link = driver.findElement(By.linkText("view"));
-	String location = link.getAttribute("href");
-	diver.get(location);
-	driver.getPageSource().contains("erkki esimerkki").shouldBe true
+	element = driver.findElements(By.linkText("view")).get(lkm);
+	element.click();
+	driver.getPageSource().contains("harrharr").shouldBe true
 	driver.getPageSource().contains("foo").shouldBe true
 	driver.getPageSource().contains("bar").shouldBe true
         driver.getPageSource().contains("2014").shouldBe true
     }
 }
 
-scenario "user can add book citations with all possible entries", {
+scenario "user can add book citation with all possible entries", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
+        driver.get("http://localhost:8090/listAll");
+        lkm = driver.findElements(By.linkText("view")).size();
         driver.get("http://localhost:8090/new");
 	Select select = new Select(driver.findElement(By.name("citationType")));
 	select.selectByVisibleText("book");
@@ -50,8 +56,11 @@ scenario "user can add book citations with all possible entries", {
 	element.submit();
     }
     when 'valid citation entries are given', {
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("test");
+
         element = driver.findElement(By.name("fields['author']"));
-        element.sendKeys("erkki esimerkki");
+        element.sendKeys("tyuio");
 
         element = driver.findElement(By.name("fields['title']"));
         element.sendKeys("foo");
@@ -86,10 +95,9 @@ scenario "user can add book citations with all possible entries", {
         element.submit();
     }
     then 'user can add new citation', {
-	WebElement link = driver.findElement(By.linkText("view"));
-	String location = link.getAttribute("href");
-	diver.get(location);
-        driver.getPageSource().contains("erkki esimerkki").shouldBe true
+	element = driver.findElements(By.linkText("view")).get(lkm);
+	element.click();
+        driver.getPageSource().contains("tyuio").shouldBe true
 	driver.getPageSource().contains("foo").shouldBe true
 	driver.getPageSource().contains("bar").shouldBe true
         driver.getPageSource().contains("2014").shouldBe true
@@ -103,9 +111,37 @@ scenario "user can add book citations with all possible entries", {
     }
 }
 
+scenario "user can not add book citations with missing required entries", {
+    given 'add new citation selected', {
+        driver = new HtmlUnitDriver()
+        driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("book");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
+    }
+    when 'valid citation entries are given', {
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("test");
+
+        element = driver.findElement(By.name("fields['author']"));
+        element.sendKeys("harrharr");
+
+        element = driver.findElement(By.name("fields['year']"));
+        element.sendKeys("2014");
+
+        element.submit();
+    }
+    then 'user can add new citation', {
+	driver.getPageSource().contains("Select citation type").shouldBe true
+    }
+}
+
 scenario "user can add article citation with required entries", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
+        driver.get("http://localhost:8090/listAll");
+        lkm = driver.findElements(By.linkText("view")).size();
         driver.get("http://localhost:8090/new");
 	Select select = new Select(driver.findElement(By.name("citationType")));
 	select.selectByVisibleText("article");
@@ -113,8 +149,11 @@ scenario "user can add article citation with required entries", {
 	element.submit();
     }
     when 'valid citation entries are given', {
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("test");
+
         element = driver.findElement(By.name("fields['author']"));
-        element.sendKeys("erkki esimerkki");
+        element.sendKeys("zxcv");
 
         element = driver.findElement(By.name("fields['title']"));
         element.sendKeys("foo");
@@ -128,10 +167,9 @@ scenario "user can add article citation with required entries", {
         element.submit();
     }
     then 'user can add new citation', {
-	WebElement link = driver.findElement(By.linkText("view"));
-	String location = link.getAttribute("href");
-	diver.get(location);
-        driver.getPageSource().contains("erkki esimerkki").shouldBe true
+	element = driver.findElements(By.linkText("view")).get(lkm);
+	element.click();
+        driver.getPageSource().contains("zxcv").shouldBe true
 	driver.getPageSource().contains("foo").shouldBe true
 	driver.getPageSource().contains("bar").shouldBe true
         driver.getPageSource().contains("2014").shouldBe true
@@ -141,6 +179,8 @@ scenario "user can add article citation with required entries", {
 scenario "user can add article citation with all possible entries", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
+        driver.get("http://localhost:8090/listAll");
+        lkm = driver.findElements(By.linkText("view")).size();
         driver.get("http://localhost:8090/new");
 	Select select = new Select(driver.findElement(By.name("citationType")));
 	select.selectByVisibleText("article");
@@ -148,8 +188,11 @@ scenario "user can add article citation with all possible entries", {
 	element.submit();
     }
     when 'valid citation entries are given', {
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("test");
+
         element = driver.findElement(By.name("fields['author']"));
-        element.sendKeys("erkki esimerkki");
+        element.sendKeys("fdhfhdf");
 
         element = driver.findElement(By.name("fields['title']"));
         element.sendKeys("foo");
@@ -181,10 +224,9 @@ scenario "user can add article citation with all possible entries", {
         element.submit();
     }
     then 'user can add new citation', {
-	WebElement link = driver.findElement(By.linkText("view"));
-	String location = link.getAttribute("href");
-	diver.get(location);
-        driver.getPageSource().contains("erkki esimerkki").shouldBe true
+	element = driver.findElements(By.linkText("view")).get(lkm);
+	element.click();
+        driver.getPageSource().contains("fdhfhdf").shouldBe true
 	driver.getPageSource().contains("foo").shouldBe true
 	driver.getPageSource().contains("bar").shouldBe true
         driver.getPageSource().contains("2014").shouldBe true
@@ -194,5 +236,31 @@ scenario "user can add article citation with all possible entries", {
         driver.getPageSource().contains("2").shouldBe true
 	driver.getPageSource().contains("fizz").shouldBe true
 	driver.getPageSource().contains("buzz").shouldBe true
+    }
+}
+
+scenario "user can not add article citation with missing required entries", {
+    given 'add new citation selected', {
+        driver = new HtmlUnitDriver()
+        driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("book");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
+    }
+    when 'valid citation entries are given', {
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("test");
+
+        element = driver.findElement(By.name("fields['author']"));
+        element.sendKeys("harrharr");
+
+        element = driver.findElement(By.name("fields['year']"));
+        element.sendKeys("2014");
+
+        element.submit();
+    }
+    then 'user can add new citation', {
+	driver.getPageSource().contains("Select citation type").shouldBe true
     }
 }
