@@ -1,6 +1,10 @@
 package com.ohtu.miniprojektiv2.domain;
 
+<<<<<<< HEAD
 import java.util.LinkedHashMap;
+=======
+import java.util.HashMap;
+>>>>>>> santeri
 import java.util.Map;
 
 /**
