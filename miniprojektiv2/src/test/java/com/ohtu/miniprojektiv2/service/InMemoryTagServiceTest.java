@@ -61,6 +61,11 @@ public class InMemoryTagServiceTest {
     }
 
     @Test
+    public void cannotCreateWithEmptyName() {
+        assertNull(ts.createTag(""));
+    }
+    
+    @Test
     public void getByIdReturnsTagWhenTagExists() {
         IntegerFactory.reset();
         ts.createTag("Test");

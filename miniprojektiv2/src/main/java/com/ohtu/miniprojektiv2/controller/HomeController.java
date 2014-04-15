@@ -1,12 +1,14 @@
 package com.ohtu.miniprojektiv2.controller;
 
+import com.ohtu.miniprojektiv2.domain.BibtexForm;
 import com.ohtu.miniprojektiv2.domain.Citation;
-
 import com.ohtu.miniprojektiv2.domain.CitationType;
 import com.ohtu.miniprojektiv2.domain.Tag;
+import com.ohtu.miniprojektiv2.domain.Validator;
 import com.ohtu.miniprojektiv2.service.CitationService;
 import com.ohtu.miniprojektiv2.service.TagCitationService;
 import com.ohtu.miniprojektiv2.service.TagService;
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,8 +137,8 @@ public class HomeController {
         } else {
             citation.changeCiteType(CitationType.INPROCEEDINGS);
         }
-        if (citation.hasErrors()) {
-            model.addAttribute("error", citation.getErrors());
+        if (Validator.checkForErrors(citation)) {
+            model.addAttribute("error", "There were some errors.");
             return "redirect:new";
         } else {
 
@@ -153,8 +155,13 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value = "bibtex", method = RequestMethod.GET)
-    public String showCitesInBibtexForm(Model model, @ModelAttribute("citation") Citation citation) {
-        model.addAttribute("citations", citationService.listAll());
+    public String showCitesInBibtexForm(Model model) {
+
+        List<String> bibtexList = new ArrayList();
+        for (Citation citation : citationService.listAll()) {
+            bibtexList.add(BibtexForm.getBibTexForm(citation));
+        }
+        model.addAttribute("bibtexList", bibtexList);
         return "listBibTeX";
     }
 //
