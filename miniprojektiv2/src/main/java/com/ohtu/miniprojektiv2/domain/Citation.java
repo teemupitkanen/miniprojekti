@@ -186,30 +186,4 @@ public class Citation {
         string = string.replaceAll("Ö", "\\\\\"{O}");
         return string;
     }
-
-    public boolean hasErrors() {
-        int i = 0;
-        if (this.citeId.length() == 0) {
-            return true;
-        }
-        for (String string : this.citeType.getApplicableFields()) {
-            if (fields.get(string).length() == 0) {
-                return true;
-            }
-            i++;
-            if (i > 3) {
-                if (this.fields.get("year") != null) {
-                    if (fields.get("year").matches("^\\d{4}$")) {
-                        return false;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public String getErrors() {
-        return "There were some errors.";
-    }
 }
