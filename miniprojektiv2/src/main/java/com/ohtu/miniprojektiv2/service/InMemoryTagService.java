@@ -22,12 +22,14 @@ public class InMemoryTagService implements TagService {
 
     @Override
     public Tag createTag(String name) {
+        if (name.equals("")){
+            return null;
+        }
         for (Tag tag : tags.values()) {
             if (tag.getName().equals(name)) {
                 return null;
             }
         }
-        
         Tag tag = new Tag(name);
         tags.put(tag.getId(), tag);
         return tag;
