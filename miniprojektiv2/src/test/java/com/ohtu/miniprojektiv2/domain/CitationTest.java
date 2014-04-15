@@ -66,6 +66,12 @@ public class CitationTest {
     }
     
     @Test
+    public void getCiteId() {
+        inp.setCiteId("Test");
+        assertEquals("Test", inp.getCiteId());
+    }
+    
+    @Test
     public void printingBibTexWorks() {
        inp.setCiteId("MAA95");  
        inp.setField("author", "Ä");
