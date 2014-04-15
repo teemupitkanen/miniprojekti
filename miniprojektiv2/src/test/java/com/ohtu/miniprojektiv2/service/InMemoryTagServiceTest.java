@@ -52,6 +52,13 @@ public class InMemoryTagServiceTest {
         ts.createTag("Test");
         assertEquals("Test", ts.getById(0).getName());
     }
+    
+    @Test
+    public void cannotCreateDuplicate() {
+        ts.createTag("Test");
+        ts.createTag("Test");
+        assertTrue(ts.getMissingTagsByTagIDs(new ArrayList()).size() == 1);
+    }
 
     @Test
     public void getByIdReturnsTagWhenTagExists() {

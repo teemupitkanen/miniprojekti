@@ -1,14 +1,12 @@
 package com.ohtu.miniprojektiv2.service;
 
-import com.ohtu.miniprojektiv2.domain.Tag;
 import com.ohtu.miniprojektiv2.domain.TagCitation;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ * Provides the actual functionality for handling tags and citations.
  * @author 41407
  */
 @Service

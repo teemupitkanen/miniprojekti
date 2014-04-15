@@ -7,6 +7,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,65 +19,15 @@
     <body>
         <h2>Citation: ${citation.citeType.name}</h2>
         <table>
-            <tr>
-                <th>Field</th>
-                <th>Value</th>
-            </tr>
-
-            <tr>
-                <td>
-                    Citation id:
-                </td>
-                <td>
-                    ${citation.citeId}
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    Title:
-                </td>
-                <td>
-                    ${citation.fields.title}
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    Author:
-                </td>
-                <td>
-                    ${citation.fields.author}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Year:
-                </td>
-                <td>
-                    ${citation.fields.year}
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    Book title:
-                </td>
-                <td>
-                    ${citation.fields.booktitle}
-                </td>
-            </tr>
-
-            <!--
             <c:forEach items="${citation.fields}" var="field">
                 <tr>
-                    <td>${fields.key}</td>
-                    <td>${fields.value}</td>
+                    <td>${field.key}:</td>
+                    <td>${field.value}</td>
                 </tr>
             </c:forEach>
-            -->
+                
         </table>
-            <h3>Tags<h3>
+        <h3>Tags<h3>
                 <c:forEach items="${addedtags}" var="tag">
                     <table>
                         <tr>
