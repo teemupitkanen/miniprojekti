@@ -127,10 +127,10 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String createNewCitation(@Valid @ModelAttribute("citation") Citation citation,
-            @RequestParam("citationType") String citationType,BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "new";
+    public String createNewCitation(Model model, @Valid @ModelAttribute("citation") Citation citation,
+            @RequestParam("citationType") String citationType) {
+        if (citation.hasErrors()) {
+            return "redirect:new";
         } else {
             if (citationType.contains("oo")) {
                 citation.changeCiteType(CitationType.BOOK);
