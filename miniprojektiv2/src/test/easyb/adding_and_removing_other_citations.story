@@ -1,6 +1,7 @@
 import com.ohtu.miniprojektiv2.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.support.ui.Select;
 
 description 'user can add other citations'
 
@@ -8,6 +9,10 @@ scenario "user can add book citations with required entries", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
         driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("book");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
     }
     when 'valid citation entries are given', {
         element = driver.findElement(By.name("fields['author']"));
@@ -25,7 +30,9 @@ scenario "user can add book citations with required entries", {
         element.submit();
     }
     then 'user can add new citation', {
-	driver.get()
+	WebElement link = driver.findElement(By.linkText("view"));
+	String location = link.getAttribute("href");
+	diver.get(location);
 	driver.getPageSource().contains("erkki esimerkki").shouldBe true
 	driver.getPageSource().contains("foo").shouldBe true
 	driver.getPageSource().contains("bar").shouldBe true
@@ -37,6 +44,10 @@ scenario "user can add book citations with all possible entries", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
         driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("book");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
     }
     when 'valid citation entries are given', {
         element = driver.findElement(By.name("fields['author']"));
@@ -75,6 +86,9 @@ scenario "user can add book citations with all possible entries", {
         element.submit();
     }
     then 'user can add new citation', {
+	WebElement link = driver.findElement(By.linkText("view"));
+	String location = link.getAttribute("href");
+	diver.get(location);
         driver.getPageSource().contains("erkki esimerkki").shouldBe true
 	driver.getPageSource().contains("foo").shouldBe true
 	driver.getPageSource().contains("bar").shouldBe true
@@ -93,6 +107,10 @@ scenario "user can add article citation with required entries", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
         driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("article");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
     }
     when 'valid citation entries are given', {
         element = driver.findElement(By.name("fields['author']"));
@@ -110,6 +128,9 @@ scenario "user can add article citation with required entries", {
         element.submit();
     }
     then 'user can add new citation', {
+	WebElement link = driver.findElement(By.linkText("view"));
+	String location = link.getAttribute("href");
+	diver.get(location);
         driver.getPageSource().contains("erkki esimerkki").shouldBe true
 	driver.getPageSource().contains("foo").shouldBe true
 	driver.getPageSource().contains("bar").shouldBe true
@@ -121,6 +142,10 @@ scenario "user can add article citation with all possible entries", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
         driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("article");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
     }
     when 'valid citation entries are given', {
         element = driver.findElement(By.name("fields['author']"));
@@ -156,6 +181,9 @@ scenario "user can add article citation with all possible entries", {
         element.submit();
     }
     then 'user can add new citation', {
+	WebElement link = driver.findElement(By.linkText("view"));
+	String location = link.getAttribute("href");
+	diver.get(location);
         driver.getPageSource().contains("erkki esimerkki").shouldBe true
 	driver.getPageSource().contains("foo").shouldBe true
 	driver.getPageSource().contains("bar").shouldBe true
