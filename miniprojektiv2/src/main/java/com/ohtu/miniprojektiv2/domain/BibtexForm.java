@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author 41407
  */
-public class BibtexForm {
+public abstract class BibtexForm {
     
     /**
      * Returns the citation in BibTeX format

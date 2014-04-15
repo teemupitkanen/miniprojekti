@@ -1,12 +1,8 @@
-
 package com.ohtu.miniprojektiv2.domain;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * Class for the Tag object.
+ *
  * @author jee
  */
 public class Tag {
@@ -14,10 +10,8 @@ public class Tag {
     /**
      * Identification variable.
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+
     /**
      * Name variable.
      */
@@ -25,6 +19,7 @@ public class Tag {
 
     /**
      * Constructor for the class.
+     *
      * @param name is the name given to the tag by user.
      */
     public Tag(String name) {
