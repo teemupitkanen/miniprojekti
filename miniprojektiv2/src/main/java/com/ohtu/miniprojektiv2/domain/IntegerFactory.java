@@ -5,16 +5,17 @@ package com.ohtu.miniprojektiv2.domain;
  *
  * @author 41407
  */
-public class IntegerFactory {
+public abstract class IntegerFactory {
 
-    private static Integer integer = 0;
+    
+    private static Integer incrementingInteger = 0;
 
     public static Integer next() {
-        return integer++;
+        return incrementingInteger++;
     }
     
     public static Integer reset() {
-        integer = 0;
-        return integer;
+        incrementingInteger = 0;
+        return incrementingInteger;
     }
 }
