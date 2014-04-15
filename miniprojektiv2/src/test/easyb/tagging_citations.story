@@ -10,9 +10,12 @@ scenario 'user can create a new tag with valid tagname for a citation',{
         driver = new HtmlUnitDriver()
         driver.get("http://localhost:8090/new");
 	Select select = new Select(driver.findElement(By.name("citationType")));
-	select.selectByVisibleText("inproceedings");s
+	select.selectByVisibleText("inproceedings");
 	element = driver.findElement(By.name("citationType"));
 	element.submit();
+
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("firstid");
 
         element = driver.findElement(By.name("fields['author']"));
         element.sendKeys("erkki esimerkki");
@@ -20,15 +23,12 @@ scenario 'user can create a new tag with valid tagname for a citation',{
         element = driver.findElement(By.name("fields['title']"));
         element.sendKeys("foo");
 
-        element = driver.findElement(By.name("fields['publisher']"));
+        element = driver.findElement(By.name("fields['booktitle']"));
         element.sendKeys("bar");
 
         element = driver.findElement(By.name("fields['year']"));
         element.sendKeys("2014");
-        System.out.println(driver.getPageSource());
-System.out.println("========================");
         element.submit();
-        System.out.println(driver.getPageSource());
         element = driver.findElement(By.linkText("view"));
         element.click();
     }
@@ -81,13 +81,15 @@ scenario 'user can tag citations with previously created tags',{
 	select.selectByVisibleText("inproceedings");
 	element = driver.findElement(By.name("citationType"));
 	element.submit();
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("secondid");
         element = driver.findElement(By.name("fields['author']"));
         element.sendKeys("jaakko esimerkki");
 
         element = driver.findElement(By.name("fields['title']"));
         element.sendKeys("foofoo");
 
-        element = driver.findElement(By.name("fields['publisher']"));
+        element = driver.findElement(By.name("fields['booktitle']"));
         element.sendKeys("barbar");
 
         element = driver.findElement(By.name("fields['year']"));
