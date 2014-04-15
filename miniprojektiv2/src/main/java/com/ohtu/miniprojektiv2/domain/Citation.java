@@ -198,9 +198,14 @@ public class Citation {
             }
             i++;
             if (i > 3) {
-                return false;
+                if (this.fields.get("year") != null) {
+                    if (fields.get("year").matches("^\\d{4}$")) {
+                        return false;
+                    }
+                }
             }
         }
+
         return false;
     }
 
