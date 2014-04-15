@@ -27,8 +27,8 @@ scenario "user can list inproceedings citation in bibtex format", {
         element.submit();
     }
     when 'user chooses to list citation in bibtex format', {
-        element = driver.findElement(By.name("View citations in BibTeX format"));
-        element.submit();
+        element = driver.findElement(By.linkText("View citations in BibTeX format"));
+        element.click();
     }
     then 'user can see page containing citation in bibtex format', {
         driver.getPageSource().contains("@inproceedings{ESIM123,").shouldBe true
@@ -37,25 +37,62 @@ scenario "user can list inproceedings citation in bibtex format", {
 
 scenario "user can list book citation in bibtex format", {
     given 'book citation is added', {
+        driver = new HtmlUnitDriver()
+        driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("book");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
+
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("ESIM123");
+        element = driver.findElement(By.name("fields['author']"));
+        element.sendKeys("erkki esimerkki");
+        element = driver.findElement(By.name("fields['title']"));
+        element.sendKeys("foo");
+        element = driver.findElement(By.name("fields['publisher']"));
+        element.sendKeys("bar");
+        element = driver.findElement(By.name("fields['year']"));
+        element.sendKeys("2014");
+        element.submit();
         
     }
     when 'user chooses to list citation in bibtex format', {
-        
+        element = driver.findElement(By.linkText("View citations in BibTeX format"));
+        element.click();
     }
     then 'user can see page containing citation in bibtex format', {
-        
+         driver.getPageSource().contains("@book{ESIM123,").shouldBe true
     }
 }
 
 scenario "user can list article citation in bibtex format", {
     given 'article citation is added', {
-        
+        driver = new HtmlUnitDriver()
+        driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("article");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
+
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("ESIM123");
+        element = driver.findElement(By.name("fields['author']"));
+        element.sendKeys("erkki esimerkki");
+        element = driver.findElement(By.name("fields['title']"));
+        element.sendKeys("foo");
+        element = driver.findElement(By.name("fields['journal']"));
+        element.sendKeys("bar");
+        element = driver.findElement(By.name("fields['year']"));
+        element.sendKeys("2014");
+        element.submit();
     }
     when 'user chooses to list citation in bibtex format', {
-        
+        element = driver.findElement(By.linkText("View citations in BibTeX format"));
+        element.click();
     }
     then 'user can see page containing citation in bibtex format', {
-        
+        driver.getPageSource().contains("@article{ESIM123,").shouldBe true
     }
 }
 
