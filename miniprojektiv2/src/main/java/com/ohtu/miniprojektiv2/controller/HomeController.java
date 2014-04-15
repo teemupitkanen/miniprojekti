@@ -35,7 +35,7 @@ public class HomeController {
     private CitationService citationService;
 
     /**
-     * 
+     *
      */
     @Autowired
     private TagCitationService tagCitationService;
@@ -93,8 +93,7 @@ public class HomeController {
      * @return name of the .jsp page
      */
     @RequestMapping(value = "new", method = RequestMethod.GET)
-    public String newCitationForm(Model model) {
-        model.addAttribute("citationTypes", CitationType.BOOK);
+    public String newCitationForm() {
         return "addCitationSetType";
     }
 
@@ -127,18 +126,20 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String createNewCitation(@Valid @ModelAttribute("citation") Citation citation,
-            @RequestParam("citationType") String citationType,BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "new";
+    public String createNewCitation(Model model, @Valid @ModelAttribute("citation") Citation citation,
+            @RequestParam("citationType") String citationType) {
+        if (citationType.contains("oo")) {
+            citation.changeCiteType(CitationType.BOOK);
+        } else if (citationType.contains("icl")) {
+            citation.changeCiteType(CitationType.ARTICLE);
         } else {
-            if (citationType.contains("oo")) {
-                citation.changeCiteType(CitationType.BOOK);
-            } else if (citationType.contains("icl")) {
-                citation.changeCiteType(CitationType.ARTICLE);
-            } else {
-                citation.changeCiteType(CitationType.INPROCEEDINGS);
-            }
+            citation.changeCiteType(CitationType.INPROCEEDINGS);
+        }
+        if (citation.hasErrors()) {
+            model.addAttribute("error", citation.getErrors());
+            return "redirect:new";
+        } else {
+
             citationService.insert(citation);
             return "redirect:listAll";
         }
@@ -215,7 +216,7 @@ public class HomeController {
         if (tag != null) {
             tagCitationService.addTagToCitation(citationId, tag.getId());
         }
-        
+
         return "redirect:citations/" + citationId;
     }
 }
