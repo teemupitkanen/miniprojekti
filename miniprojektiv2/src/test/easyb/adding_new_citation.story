@@ -144,6 +144,10 @@ scenario "user can not add inproceedins citation with incorrect year", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
         driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("inproceedings");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
     }
     when 'incorrect year and other correct entries are given', {
         element = driver.findElement(By.name("author"));
@@ -169,6 +173,10 @@ scenario "user can not add inproceedins citation with empty entries", {
     given 'add new citation selected', {
         driver = new HtmlUnitDriver()
         driver.get("http://localhost:8090/new");
+	Select select = new Select(driver.findElement(By.name("citationType")));
+	select.selectByVisibleText("inproceedings");
+	element = driver.findElement(By.name("citationType"));
+	element.submit();
     }
     when 'no entries are given', {
         element = driver.findElement(By.name("author"));
