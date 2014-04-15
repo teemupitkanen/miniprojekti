@@ -1,8 +1,8 @@
 package com.ohtu.miniprojektiv2.domain;
 
 /**
- *
- * @author 41407
+ * An enum class for defining the type of citation being created
+ * @author 41407, Santeri
  */
 public enum CitationType {
 
