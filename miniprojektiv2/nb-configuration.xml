@@ -16,7 +16,9 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_j2eeVersion>1.7-web</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_j2eeVersion>
     </properties>
     <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+        <word>BibTeX</word>
         <word>inproceedings</word>
         <word>jsp</word>
+        <word>listAll</word>
     </spellchecker-wordlist>
 </project-shared-configuration>

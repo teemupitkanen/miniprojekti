@@ -1,7 +1,5 @@
 <%-- 
-    Document   : viewCitation
-    Created on : Apr 2, 2014, 12:44:54 PM
-    Author     : 41407
+    A page for viewing a chosen citation.
 --%>
 
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>

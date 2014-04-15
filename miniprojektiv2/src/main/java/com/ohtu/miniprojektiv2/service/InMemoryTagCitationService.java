@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * Provides the actual functionality for handling tags and citations.
+ * The methods with override tag are described in the interface class.
+ * @see com.ohtu.miniprojektiv2.service.TagCitationService
  * @author 41407
  */
 @Service

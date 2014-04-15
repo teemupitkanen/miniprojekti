@@ -1,7 +1,5 @@
 <%-- 
-    Document   : tag
-    Created on : Apr 8, 2014, 3:31:14 AM
-    Author     : Santeri
+    This is a page that lets the user handle tags.
 --%>
 
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>

@@ -17,15 +17,27 @@ public enum CitationType {
     private final String name;
     private final String[] applicableFields;
 
+    /**
+     * Constructor for the class.
+     * @param name is the name of the type.
+     * @param applicableFields defines the fields that are applicable with a
+     * given citation type.
+     */
     private CitationType(String name, String[] applicableFields) {
         this.name = name;
         this.applicableFields = applicableFields;
     }
 
+    /**
+     * @return returns the name of citation type.
+     */
     public String getName() {
         return name;
     }
     
+    /**
+     * @return returns a string array of citation's applicable fields.
+     */
     public String[] getApplicableFields() {
         return applicableFields;
     }
