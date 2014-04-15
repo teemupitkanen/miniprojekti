@@ -1,10 +1,12 @@
 package com.ohtu.miniprojektiv2.domain;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class CitationTest {
 
@@ -74,4 +76,19 @@ public class CitationTest {
        correct += "} <br>";
     assertEquals(correct, inp.getBibTexForm());
     }
+    
+    @Test
+    public void setCiteType() {
+        inp.changeCiteType(CitationType.BOOK);
+        assertTrue(inp.getCiteType() == CitationType.BOOK);
+    }
+    
+    @Test
+    public void setFields() {
+        Map<String, String> map = new HashMap();
+        inp.setFields(map);
+        assertEquals(map, inp.getFields());
+    }
+    
+    
 }
