@@ -8,7 +8,9 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ * This class gives the functionality for handling tags. Methods that
+ * have override annotation are described in the interface class.
+ * @see com.ohtu.miniprojektiv2.service.TagService
  * @author lauri
  */
 @Service

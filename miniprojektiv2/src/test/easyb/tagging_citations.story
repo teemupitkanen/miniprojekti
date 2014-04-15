@@ -13,6 +13,7 @@ scenario 'user can create a new tag with valid tagname for a citation',{
 	select.selectByVisibleText("inproceedings");
 	element = driver.findElement(By.name("citationType"));
 	element.submit();
+
         element = driver.findElement(By.name("fields['author']"));
         element.sendKeys("erkki esimerkki");
 
