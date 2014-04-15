@@ -10,6 +10,7 @@
     </head>
     <body>
         <h1>Create new citation</h1>
+        <p>${error}</p>
         <form:form commandName="citation" action="${pageContext.request.contextPath}/setFields" modelAttribute="citationType" method="POST">
             <p>Select citation type:</p>
             <select name="citationType" >

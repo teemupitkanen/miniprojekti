@@ -192,7 +192,7 @@ public class Citation {
         if (this.citeId.length() == 0) {
             return true;
         }
-        for (String string : fields.keySet()) {
+        for (String string : this.citeType.getApplicableFields()) {
             if (fields.get(string).length() == 0) {
                 return true;
             }
