@@ -5,20 +5,17 @@ import org.openqa.selenium.support.ui.Select;
 
 description 'user can tag citations'
 
-<<<<<<< HEAD
-scenario "user can list tags citations", {
-    given 'new citations are added for tag', {
-   driver = new HtmlUnitDriver()
-=======
 scenario 'user can create a new tag with valid tagname for a citation',{
     given 'user is viewing a citation',{
         driver = new HtmlUnitDriver()
->>>>>>> 0b9e4901a156a208d5ad4e09df09862bbcb8a629
         driver.get("http://localhost:8090/new");
 	Select select = new Select(driver.findElement(By.name("citationType")));
 	select.selectByVisibleText("inproceedings");
 	element = driver.findElement(By.name("citationType"));
 	element.submit();
+
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("firstid");
 
         element = driver.findElement(By.name("fields['author']"));
         element.sendKeys("erkki esimerkki");
@@ -26,30 +23,14 @@ scenario 'user can create a new tag with valid tagname for a citation',{
         element = driver.findElement(By.name("fields['title']"));
         element.sendKeys("foo");
 
-        element = driver.findElement(By.name("fields['publisher']"));
+        element = driver.findElement(By.name("fields['booktitle']"));
         element.sendKeys("bar");
 
         element = driver.findElement(By.name("fields['year']"));
         element.sendKeys("2014");
-
         element.submit();
-        
         element = driver.findElement(By.linkText("view"));
         element.click();
-<<<<<<< HEAD
-
-        element = driver.findElement(By.name("tagName"));
-        element.sendKeys("newtag");
-        element.submit();
-    }
-    when 'user chooses to view a tag', {
-        element = driver.findElement(By.linkText("newtag"));
-        element.click();
-    }
-    then 'user can see a list of citations', {
-        driver.getPageSource().contains("Citations tagged with newtag:").shouldBe true
-=======
-        
     }
     when 'user fills in an appropriate tagname',{
         element = driver.findElement(By.name("tagName"));
@@ -60,6 +41,7 @@ scenario 'user can create a new tag with valid tagname for a citation',{
         driver.getPageSource().contains("newtag").shouldBe true
     }
 }
+
 scenario 'user cannot create a tag with an empty name',{
     given 'user is viewing a citation',{
         driver = new HtmlUnitDriver()
@@ -89,7 +71,6 @@ scenario 'user cannot create two tags with identical names',{
     }
     then 'no new tag is created',{
         driver.getPageSource().split("viewtag", -1).length.shouldBe 2
->>>>>>> 0b9e4901a156a208d5ad4e09df09862bbcb8a629
     }
 }
 scenario 'user can tag citations with previously created tags',{
@@ -100,13 +81,15 @@ scenario 'user can tag citations with previously created tags',{
 	select.selectByVisibleText("inproceedings");
 	element = driver.findElement(By.name("citationType"));
 	element.submit();
+        element = driver.findElement(By.name("citeId"));
+        element.sendKeys("secondid");
         element = driver.findElement(By.name("fields['author']"));
         element.sendKeys("jaakko esimerkki");
 
         element = driver.findElement(By.name("fields['title']"));
         element.sendKeys("foofoo");
 
-        element = driver.findElement(By.name("fields['publisher']"));
+        element = driver.findElement(By.name("fields['booktitle']"));
         element.sendKeys("barbar");
 
         element = driver.findElement(By.name("fields['year']"));
@@ -126,4 +109,22 @@ scenario 'user can tag citations with previously created tags',{
     then 'the citation is tagged',{
         driver.getPageSource().contains("viewtag").shouldBe true
     }
+}
+
+scenario "user can list tags citations", {
+    given 'new citations are added for tag', {
+        driver = new HtmlUnitDriver()
+        driver.get("http://localhost:8090/listAll");
+        
+        element = driver.findElement(By.linkText("view"));
+        element.click();
+
+    }
+    when 'user chooses to view a tag', {
+        element = driver.findElement(By.linkText("newtag"));
+        element.click();
+    }
+    then 'user can see a list of citations', {
+        driver.getPageSource().contains("Citations tagged with newtag:").shouldBe true
+}
 }
