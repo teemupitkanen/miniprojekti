@@ -39,17 +39,19 @@
                     <input type="hidden" name="citationId" value="${citation.id}">
                     <input name="addTag" type="submit" value="Create tag">
                 </form:form>
-            <h3>Add existing tag</h3>
-                <form:form commandName="tagwithexisting" action="${pageContext.request.contextPath}/tagwithexisting" method="POST">
-                    <select name="tagId">
-                    <c:forEach var="tag" items="${missingtags}">
-                        <option value="${tag.id}">${tag.name}</option>
-                    </c:forEach>
-                    </select>
-                    <input type="hidden" name="citationId" value="${citation.id}">
-                    <input type="submit" value="Add tag">
-                </form:form>
-        <br/>
-        <p><a href="listAll">Home</a></p>
+                    <c:if test="${fn:length(missingtags) > 0}">
+                            <h3>Add existing tag<h3>
+                                    <form:form commandName="tagwithexisting" action="${pageContext.request.contextPath}/tagwithexisting" method="POST">
+                                        <select name="tagId">
+                                            <c:forEach var="tag" items="${missingtags}">
+                                                <option value="${tag.id}">${tag.name}</option>
+                                            </c:forEach>
+                                        </select>
+                                        <input type="hidden" name="citationId" value="${citation.id}">
+                                        <input type="submit" value="Add tag">
+                                    </form:form>
+                </c:if>
+        <br />
+        <p><a href="/miniprojektiv2/listAll">Home</a></p>
     </body>
 </html>
