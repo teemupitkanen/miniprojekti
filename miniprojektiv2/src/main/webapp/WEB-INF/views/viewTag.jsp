@@ -22,10 +22,9 @@
         <ul>
             <c:forEach items="${citations}" var="citation" varStatus="status">
                 <!-- TODO fix link -->
-                <li><a href="/citations/${citation.citeId}">${citation.citeId}</a>
+                <li><a href="/miniprojektiv2/citations/${citation.id}">${citation.citeId}</a>
                 </li>
             </c:forEach>
-        </ul>
-        <input type="button" value="Back" onclick="listAll" />
+        </ul> <input type="button" value="Back" onclick="javascript:history.back()" />
     </body>
 </html>

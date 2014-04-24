@@ -19,6 +19,6 @@
                 <p>${citation}<br></p>
             </c:forEach>
         </div>
-        <p><a href="/">Home</a></p>
+        <p><a href="listAll">Home</a></p>
     </body>
 </html>
