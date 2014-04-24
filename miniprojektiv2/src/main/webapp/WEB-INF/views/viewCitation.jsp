@@ -40,7 +40,7 @@
                     <input name="addTag" type="submit" value="Create tag">
                 </form:form>
                     <c:if test="${fn:length(missingtags) > 0}">
-                            <h3>Add existing tag<h3>
+                            <h3>Add existing tag</h3>
                                     <form:form commandName="tagwithexisting" action="${pageContext.request.contextPath}/tagwithexisting" method="POST">
                                         <select name="tagId">
                                             <c:forEach var="tag" items="${missingtags}">
@@ -51,7 +51,7 @@
                                         <input type="submit" value="Add tag">
                                     </form:form>
                 </c:if>
-        <br />
+        <br/>
         <p><a href="/miniprojektiv2/listAll">Home</a></p>
     </body>
 </html>
