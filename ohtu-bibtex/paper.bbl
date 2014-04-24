@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{BA04}
+K.~Beck and C.~Andres.
+\newblock {\em Extreme Programming Explained: Embrace Change (2nd Edition)}.
+\newblock Addison-Wesley Professional, 2004.
+
+\bibitem{HM06}
+M.~Hassinen and H.~M\"{a}yr\"{a}.
+\newblock Learning programming by programming: a case study.
+\newblock In {\em Baltic Sea '06: Proceedings of the 6th Baltic Sea conference
+  on Computing education research: Koli Calling 2006}, pages 117--119. ACM,
+  2006.
+
+\bibitem{VPL11}
+A.~Vihavainen, M.~Paksula, and M.~Luukkainen.
+\newblock Extreme apprenticeship method in teaching programming for beginners.
+\newblock In {\em SIGCSE '11: Proceedings of the 42nd SIGCSE technical
+  symposium on Computer science education}, 2011.
+
+\end{thebibliography}
